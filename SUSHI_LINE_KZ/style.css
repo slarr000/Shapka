@@ -332,7 +332,8 @@
     top: 85px; /* Начинается под шапкой */
     right: -375px;
     width: 375px;
-    height: calc(100vh - 85px); /* Высота минус шапка */
+    height: auto; 
+    max-height: 70vh;
     background: white;
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
     z-index: 998; /* Ниже шапки */
@@ -340,13 +341,14 @@
     display: flex;
     flex-direction: column;
     border-top: 1px solid #f0f0f0;
+    
 }
 
 .cart-panel.active {
     right: 0;
 }
 
-/* Убрали оверлей */
+
 
 /* Заголовок корзины */
 .cart-header {
@@ -356,6 +358,7 @@
     padding: 20px;
     border-bottom: 1px solid #f0f0f0;
     background: white;
+    flex-shrink: 0; 
 }
 
 .cart-title {
@@ -384,7 +387,8 @@
 .cart-content {
     flex: 1;
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: auto; 
+    min-height: 200px; 
 }
 
 .cart-empty {
@@ -598,3 +602,4 @@ p {
         left: -120px;
     }
 }
+
