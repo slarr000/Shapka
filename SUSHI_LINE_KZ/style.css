@@ -469,6 +469,11 @@
 .content {
     margin-top: 85px;
     min-height: calc(100vh - 200px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content.shifted {
+    transform: translateX(-390px);
 }
 
 .container {
@@ -695,6 +700,11 @@ p {
 
     .hero h1 {
         font-size: 2rem;
+    }
+
+    /* Отключаем сдвиг контента на мобильных */
+    .content.shifted {
+        transform: none;
     }
 
     /* Сужаем иконки-кнопки на узких экранах */
