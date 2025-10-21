@@ -1,3 +1,4 @@
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +6,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
+/* ===== ШАПКА ===== */
 .header {
     position: fixed;
     top: 0;
@@ -16,6 +17,11 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.header.scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер шапки */
 .header-container {
     display: flex;
     background: white;
@@ -38,11 +44,6 @@
     max-width: 1140px;
 }
 
-
-body.cart-open .header-container {
-    transform: none !important;
-}
-
 /* Боковые контейнеры */
 .header-container-left {
     display: flex;
@@ -56,7 +57,7 @@ body.cart-open .header-container {
     gap: 15px;
 }
 
-
+/* ===== КНОПКИ ШАПКИ ===== */
 .menu, .language-button-container, .search {
     display: flex;
     justify-content: center;
@@ -88,36 +89,10 @@ body.cart-open .header-container {
     transform: scale(1.05);
 }
 
-
+/* ===== ВЫБОР ЯЗЫКА ===== */
 .language-selector {
     position: relative;
     display: inline-block;
-}
-
-.language-button-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: whitesmoke;
-    width: 40px;
-    height: 40px;
-    border-radius: 20%;
-    transition: all 0.3s ease;
-}
-
-.language-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border-radius: 20%;
-    padding: 0;
-    position: relative;
 }
 
 .language-button svg {
@@ -197,7 +172,7 @@ body.cart-open .header-container {
     border-radius: 4px;
 }
 
-
+/* ===== КОРЗИНА ===== */
 .cart {
     display: flex;
     justify-content: center;
@@ -245,7 +220,7 @@ body.cart-open .header-container {
     white-space: nowrap;
 }
 
-
+/* ===== ПОИСК ===== */
 .search-container {
     position: relative;
 }
@@ -351,42 +326,27 @@ body.cart-open .header-container {
     color: #007bff;
 }
 
-
+/* ===== БОКОВАЯ ПАНЕЛЬ КОРЗИНЫ ===== */
 .cart-panel {
     position: fixed;
-    top: 0;
+    top: 85px; /* Начинается под шапкой */
     right: -375px;
     width: 375px;
-    height: 100vh;
+    height: calc(100vh - 85px); /* Высота минус шапка */
     background: white;
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
+    z-index: 998; /* Ниже шапки */
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    border-top: 1px solid #f0f0f0;
 }
 
 .cart-panel.active {
     right: 0;
 }
 
-.cart-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.cart-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
+/* Убрали оверлей */
 
 /* Заголовок корзины */
 .cart-header {
@@ -447,7 +407,7 @@ body.cart-open .header-container {
     margin: 0;
 }
 
-/* Анимации */
+/* ===== АНИМАЦИИ ===== */
 @keyframes searchPulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
     70% { box-shadow: 0 0 0 6px rgba(0, 123, 255, 0); }
@@ -497,24 +457,7 @@ body.cart-open .header-container {
     animation: pulse 2s ease-out;
 }
 
-.header.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-
-@media (max-width: 1350px) {
-    .header-wide {
-        width: 1140px;
-        max-width: 1140px;
-    }
-}
-
-
-body.cart-open {
-    overflow: hidden;
-}
-
-/* Стили для контента */
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
 .content {
     margin-top: 85px;
     min-height: 2000px;
@@ -541,7 +484,7 @@ p {
     margin-bottom: 15px;
 }
 
-
+/* Герой-секция */
 .hero {
     background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
     color: white;
@@ -578,7 +521,7 @@ p {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-
+/* Сетка меню */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -634,4 +577,24 @@ p {
 /* Контакты */
 .contact {
     background: #f8f9fa;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 1350px) {
+    .header-wide {
+        width: 1140px;
+        max-width: 1140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-panel {
+        width: 100%;
+        right: -100%;
+    }
+
+    .search-expanded {
+        min-width: 280px;
+        left: -120px;
+    }
 }
