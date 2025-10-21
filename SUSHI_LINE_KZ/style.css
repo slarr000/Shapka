@@ -678,7 +678,7 @@ p {
         right: 20px;
     }
 
-    /* На очень узких экранах добавляем отступы */
+  
     .content-container,
     .hero-container,
     .footer-container {
@@ -716,12 +716,12 @@ p {
         font-size: 2rem;
     }
 
-    /* Отключаем сдвиг контента на мобильных */
+  
     .content.shifted {
         transform: none;
     }
 
-    /* Сужаем иконки-кнопки на узких экранах */
+    
     .header-container-left {
         gap: 10px;
     }
@@ -765,3 +765,4 @@ p {
         right: 15px;
     }
 }
+
