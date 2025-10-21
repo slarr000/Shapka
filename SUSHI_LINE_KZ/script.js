@@ -202,7 +202,13 @@ function initCart() {
     cartButton.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        openCart();
+        
+        // Переключаем состояние корзины
+        if (body.classList.contains('cart-open')) {
+            closeCart();
+        } else {
+            openCart();
+        }
     });
 
     cartClose.addEventListener('click', closeCart);
@@ -224,8 +230,6 @@ function initCart() {
 
         headerContainer.classList.remove('header-wide');
         headerContainer.classList.add('header-narrow');
-
-      
     }
 
     function closeCart() {
@@ -244,7 +248,6 @@ function initCart() {
             headerContainer.classList.remove('header-wide');
             headerContainer.classList.add('header-narrow');
         }
-
     }
 }
 
@@ -256,3 +259,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initCart();
 
 });
+
