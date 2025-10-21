@@ -225,7 +225,7 @@ function initCart() {
         headerContainer.classList.remove('header-wide');
         headerContainer.classList.add('header-narrow');
 
-        document.documentElement.style.overflow = 'hidden';
+      
     }
 
     function closeCart() {
@@ -245,7 +245,6 @@ function initCart() {
             headerContainer.classList.add('header-narrow');
         }
 
-        document.documentElement.style.overflow = '';
     }
 }
 
@@ -255,4 +254,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguageSelector();
     initSearch();
     initCart();
+
 });
