@@ -226,8 +226,6 @@ function initCart() {
         body.classList.add('cart-open');
         cartPanel.classList.add('active');
         cartOverlay.classList.add('active');
-        cartButton.classList.add('active');
-
         headerContainer.classList.remove('header-wide');
         headerContainer.classList.add('header-narrow');
     }
@@ -235,7 +233,6 @@ function initCart() {
     function closeCart() {
         body.classList.remove('cart-open');
         cartPanel.classList.remove('active');
-        cartOverlay.classList.remove('active');
         cartButton.classList.remove('active');
 
         const scrollY = window.scrollY;
@@ -259,4 +256,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCart();
 
 });
+
 
