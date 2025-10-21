@@ -196,7 +196,6 @@ class SushiApp {
         const content = document.querySelector('.content');
 
         cartPanel.classList.add('active');
-        // Сдвигаем контент только на десктопе
         if (window.innerWidth > 768) {
             content.classList.add('shifted');
         }
@@ -213,3 +212,4 @@ class SushiApp {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => new SushiApp());
+
