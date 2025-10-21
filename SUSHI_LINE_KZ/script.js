@@ -195,14 +195,14 @@ function initCart() {
     const cartButton = document.querySelector('.cart-button');
     const cartClose = document.getElementById('cartClose');
     const cartPanel = document.getElementById('cartPanel');
-    const cartOverlay = document.getElementById('cartOverlay');
     const body = document.body;
     const headerContainer = document.querySelector('.header-container');
+    const cartContainer = document.querySelector('.cart-container');
 
     cartButton.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         // Переключаем состояние корзины
         if (body.classList.contains('cart-open')) {
             closeCart();
@@ -212,7 +212,6 @@ function initCart() {
     });
 
     cartClose.addEventListener('click', closeCart);
-    cartOverlay.addEventListener('click', closeCart);
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && body.classList.contains('cart-open')) {
@@ -220,12 +219,18 @@ function initCart() {
         }
     });
 
-    cartPanel.addEventListener('click', (e) => e.stopPropagation());
+    // Закрытие корзины при клике вне ее области
+    document.addEventListener('click', (e) => {
+        if (body.classList.contains('cart-open') &&
+            !cartContainer.contains(e.target)) {
+            closeCart();
+        }
+    });
 
     function openCart() {
         body.classList.add('cart-open');
         cartPanel.classList.add('active');
-        cartOverlay.classList.add('active');
+
         headerContainer.classList.remove('header-wide');
         headerContainer.classList.add('header-narrow');
     }
@@ -233,7 +238,6 @@ function initCart() {
     function closeCart() {
         body.classList.remove('cart-open');
         cartPanel.classList.remove('active');
-        cartButton.classList.remove('active');
 
         const scrollY = window.scrollY;
         const windowWidth = window.innerWidth;
@@ -254,7 +258,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguageSelector();
     initSearch();
     initCart();
-
 });
-
-
