@@ -172,6 +172,13 @@
     border-radius: 4px;
 }
 
+/* ===== КОНТЕЙНЕР КОРЗИНЫ ===== */
+.cart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 /* ===== КОРЗИНА ===== */
 .cart {
     display: flex;
@@ -183,6 +190,7 @@
     border-radius: 12px;
     padding: 0 15px;
     transition: all 0.3s ease;
+    z-index: 999;
 }
 
 .cart-button {
@@ -203,21 +211,100 @@
     transition: all 0.3s ease;
 }
 
-.cart-button.active {
-    background: #007bff;
-    color: white;
-}
-
-.cart-button.active svg {
-    stroke: white;
-}
-
 .cart-amount {
     font-size: 14px;
     font-weight: 600;
     color: #333;
     transition: all 0.8s ease;
     white-space: nowrap;
+}
+
+/* ===== БОКОВАЯ ПАНЕЛЬ КОРЗИНЫ ===== */
+.cart-panel {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 10px); /* Располагаем справа от кнопки с отступом */
+    width: 375px;
+    height: auto;
+    max-height: 70vh;
+    background: white;
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px); /* Начальное положение - сдвинута влево */
+}
+
+.cart-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0); /* Конечное положение - на месте */
+}
+
+/* Заголовок корзины */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    background: white;
+    flex-shrink: 0;
+    border-radius: 12px 12px 0 0;
+}
+
+.cart-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.cart-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.cart-close:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* Контент корзины */
+.cart-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    min-height: 200px;
+}
+
+.cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999;
+    text-align: center;
+}
+
+.cart-empty svg {
+    margin-bottom: 16px;
+    color: #ddd;
+}
+
+.cart-empty p {
+    font-size: 16px;
+    margin: 0;
 }
 
 /* ===== ПОИСК ===== */
@@ -326,96 +413,17 @@
     color: #007bff;
 }
 
-/* ===== БОКОВАЯ ПАНЕЛЬ КОРЗИНЫ ===== */
-.cart-panel {
-    position: fixed;
-    top: 85px; /* Начинается под шапкой */
-    right: -375px;
-    width: 375px;
-    height: auto; 
-    max-height: 70vh;
-    background: white;
-    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-    z-index: 998; /* Ниже шапки */
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid #f0f0f0;
-    
-}
-
-.cart-panel.active {
-    right: 0;
-}
-
-
-
-/* Заголовок корзины */
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #f0f0f0;
-    background: white;
-    flex-shrink: 0; 
-}
-
-.cart-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
-}
-
-.cart-close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    color: #666;
-    transition: all 0.2s ease;
-}
-
-.cart-close:hover {
-    background: #f5f5f5;
-    color: #333;
-}
-
-/* Контент корзины */
-.cart-content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto; 
-    min-height: 200px; 
-}
-
-.cart-empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #999;
-    text-align: center;
-}
-
-.cart-empty svg {
-    margin-bottom: 16px;
-    color: #ddd;
-}
-
-.cart-empty p {
-    font-size: 16px;
-    margin: 0;
-}
-
 /* ===== АНИМАЦИИ ===== */
 @keyframes searchPulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
-    70% { box-shadow: 0 0 0 6px rgba(0, 123, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
 }
 
 .search-pulse {
@@ -490,7 +498,7 @@ p {
 
 /* Герой-секция */
 .hero {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    background: linear-gradient(135deg, #3e7678, #36c1fb);
     color: white;
     text-align: center;
     padding: 120px 0;
@@ -522,7 +530,7 @@ p {
 
 .order-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Сетка меню */
@@ -543,7 +551,7 @@ p {
 
 .menu-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item h3 {
@@ -565,7 +573,7 @@ p {
     padding: 30px;
     border-radius: 12px;
     margin: 20px 0;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial p {
@@ -593,8 +601,14 @@ p {
 
 @media (max-width: 768px) {
     .cart-panel {
-        width: 100%;
-        right: -100%;
+        width: 100vw;
+        left: 0;
+        top: 100%;
+        transform: translateY(20px);
+    }
+
+    .cart-panel.active {
+        transform: translateY(0);
     }
 
     .search-expanded {
@@ -602,4 +616,3 @@ p {
         left: -120px;
     }
 }
-
