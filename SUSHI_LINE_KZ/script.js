@@ -46,22 +46,27 @@ class SushiApp {
             let currentAmount = 0;
             const targetAmount = 14500;
             const duration = 2000;
+            const startTime = performance.now();
 
-            const animate = () => {
-                currentAmount += targetAmount / (duration / 16);
-                if (currentAmount >= targetAmount) {
-                    currentAmount = targetAmount;
+            const animate = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                currentAmount = targetAmount * progress;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
                     setTimeout(() => {
                         cartAmount.classList.remove('amount-increasing');
                         cart.classList.remove('cart-pulse');
                     }, 1000);
-                } else {
-                    requestAnimationFrame(animate);
                 }
+
                 cartAmount.textContent = Math.round(currentAmount).toLocaleString('ru-RU') + ' ₸';
             };
 
-            animate();
+            requestAnimationFrame(animate);
         }, 300);
     }
 
@@ -122,6 +127,7 @@ class SushiApp {
             item.addEventListener('click', () => {
                 searchInput.value = item.textContent;
                 searchInput.focus();
+                this.performSearch(searchInput.value);
             });
         });
 
@@ -151,6 +157,7 @@ class SushiApp {
         const cartButton = document.querySelector('.cart-button');
         const cartClose = document.getElementById('cartClose');
         const cartPanel = document.getElementById('cartPanel');
+        const content = document.querySelector('.content');
 
         cartButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -185,11 +192,22 @@ class SushiApp {
     }
 
     openCart() {
-        document.getElementById('cartPanel').classList.add('active');
+        const cartPanel = document.getElementById('cartPanel');
+        const content = document.querySelector('.content');
+
+        cartPanel.classList.add('active');
+        // Сдвигаем контент только на десктопе
+        if (window.innerWidth > 768) {
+            content.classList.add('shifted');
+        }
     }
 
     closeCart() {
-        document.getElementById('cartPanel').classList.remove('active');
+        const cartPanel = document.getElementById('cartPanel');
+        const content = document.querySelector('.content');
+
+        cartPanel.classList.remove('active');
+        content.classList.remove('shifted');
     }
 }
 
