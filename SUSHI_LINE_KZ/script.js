@@ -158,7 +158,7 @@ class SushiApp {
         const cartButton = document.querySelector('.cart-button');
         const cartClose = document.getElementById('cartClose');
         const cartPanel = document.getElementById('cartPanel');
-        const content = document.querySelector('.content');
+        const contentSections = document.querySelector('.content-sections');
 
         cartButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -194,15 +194,15 @@ class SushiApp {
 
     openCart() {
         const cartPanel = document.getElementById('cartPanel');
-        const content = document.querySelector('.content');
+        const contentSections = document.querySelector('.content-sections');
 
         cartPanel.classList.add('active');
         // Обновляем позиционирование при открытии
         this.updateCartPanelPosition();
 
-        // Сдвигаем контент только на десктопе
+        // Сдвигаем только секции контента, а не весь контент (исключая hero)
         if (window.innerWidth > 768) {
-            content.classList.add('shifted');
+            contentSections.classList.add('shifted');
         }
 
         // Добавляем обработчик для обновления позиции при ресайзе
@@ -212,10 +212,10 @@ class SushiApp {
 
     closeCart() {
         const cartPanel = document.getElementById('cartPanel');
-        const content = document.querySelector('.content');
+        const contentSections = document.querySelector('.content-sections');
 
         cartPanel.classList.remove('active');
-        content.classList.remove('shifted');
+        contentSections.classList.remove('shifted');
 
         // Убираем обработчик ресайза
         if (this.cartResizeHandler) {
