@@ -238,8 +238,40 @@
     overflow: hidden;
 }
 
-.cart-panel.active {
-    right: 15px;
+/* Динамическое позиционирование для широких экранов */
+@media (min-width: 1351px) {
+    .cart-panel.active {
+        right: calc((100vw - 1300px) / 2 + 15px);
+    }
+
+    .header-narrow ~ .cart-panel.active {
+        right: calc((100vw - 1140px) / 2 + 15px);
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1350px) {
+    .cart-panel.active {
+        right: calc((100vw - 1140px) / 2 + 15px);
+    }
+}
+
+/* Обновляем существующие медиа-запросы для узких экранов */
+@media (max-width: 1200px) {
+    .cart-panel.active {
+        right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-panel.active {
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-panel.active {
+        right: 15px;
+    }
 }
 
 /* Контент корзины с ограничением высоты и скроллом */
@@ -658,10 +690,6 @@ p {
         width: 1140px;
         max-width: 1140px;
     }
-
-    .cart-panel.active {
-        right: 15px;
-    }
 }
 
 @media (max-width: 1200px) {
@@ -674,11 +702,7 @@ p {
         max-width: 100%;
     }
 
-    .cart-panel.active {
-        right: 20px;
-    }
-
-  
+    /* На очень узких экранах добавляем отступы */
     .content-container,
     .hero-container,
     .footer-container {
@@ -692,10 +716,6 @@ p {
         width: calc(100vw - 40px);
         right: -100vw;
         border-radius: 12px;
-    }
-
-    .cart-panel.active {
-        right: 20px;
     }
 
     .search-expanded {
@@ -716,12 +736,12 @@ p {
         font-size: 2rem;
     }
 
-  
+    /* Отключаем сдвиг контента на мобильных */
     .content.shifted {
         transform: none;
     }
 
-    
+    /* Сужаем иконки-кнопки на узких экранах */
     .header-container-left {
         gap: 10px;
     }
@@ -760,9 +780,4 @@ p {
     .cart-panel {
         width: calc(100vw - 30px);
     }
-
-    .cart-panel.active {
-        right: 15px;
-    }
 }
-
