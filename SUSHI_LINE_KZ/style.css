@@ -501,11 +501,23 @@
 .content {
     margin-top: 85px;
     min-height: calc(100vh - 200px);
+    /* Убираем transition из .content */
+}
+
+/* Сдвигаем только внутренние секции, кроме hero */
+.content-sections.shifted {
+    transform: translateX(-390px);
+}
+
+/* Контейнер для секций, которые будут сдвигаться */
+.content-sections {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.content.shifted {
-    transform: translateX(-390px);
+/* Герой-секция - не должна сдвигаться */
+.hero {
+    transition: none !important;
+    transform: none !important;
 }
 
 /* Контейнеры контента с ФИКСИРОВАННОЙ шириной */
@@ -737,7 +749,7 @@ p {
     }
 
     /* Отключаем сдвиг контента на мобильных */
-    .content.shifted {
+    .content-sections.shifted {
         transform: none;
     }
 
