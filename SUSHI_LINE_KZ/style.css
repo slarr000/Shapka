@@ -21,6 +21,41 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Обертка шапки для сдвига */
+.header-wrapper {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 auto;
+}
+
+/* Состояния ширины обертки шапки */
+.header-wide .header-wrapper {
+    width: 1300px;
+    max-width: 1300px;
+}
+
+.header-narrow .header-wrapper {
+    width: 1140px;
+    max-width: 1140px;
+}
+
+/* Сдвиг шапки при открытой корзине */
+.header-wrapper.shifted {
+    transform: translateX(-390px);
+    width: calc(100% - 390px) !important;
+    max-width: calc(100% - 390px) !important;
+}
+
+/* Сужаем контейнеры шапки к центру при сдвиге */
+.header-wrapper.shifted .header-container-left {
+    gap: 8px;
+    flex: 0 1 auto;
+}
+
+.header-wrapper.shifted .header-container-right {
+    gap: 8px;
+    flex: 0 1 auto;
+}
+
 /* Контейнер шапки */
 .header-container {
     display: flex;
@@ -51,12 +86,14 @@
     align-items: center;
     gap: 15px;
     flex: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-container-right {
     display: flex;
     align-items: center;
     gap: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== КНОПКИ ШАПКИ ===== */
@@ -501,7 +538,6 @@
 .content {
     margin-top: 85px;
     min-height: calc(100vh - 200px);
-    /* Убираем transition из .content */
 }
 
 /* Сдвигаем только внутренние секции, кроме hero */
@@ -748,9 +784,15 @@ p {
         font-size: 2rem;
     }
 
-    /* Отключаем сдвиг контента на мобильных */
+    /* Отключаем сдвиг контента и шапки на мобильных */
     .content-sections.shifted {
         transform: none;
+    }
+
+    .header-wrapper.shifted {
+        transform: none;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     /* Сужаем иконки-кнопки на узких экранах */
