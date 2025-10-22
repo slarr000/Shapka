@@ -1,5 +1,6 @@
 class SushiApp {
     constructor() {
+        this.cartResizeHandler = null;
         this.init();
     }
 
@@ -196,9 +197,17 @@ class SushiApp {
         const content = document.querySelector('.content');
 
         cartPanel.classList.add('active');
+        // Обновляем позиционирование при открытии
+        this.updateCartPanelPosition();
+
+        // Сдвигаем контент только на десктопе
         if (window.innerWidth > 768) {
             content.classList.add('shifted');
         }
+
+        // Добавляем обработчик для обновления позиции при ресайзе
+        this.cartResizeHandler = () => this.updateCartPanelPosition();
+        window.addEventListener('resize', this.cartResizeHandler);
     }
 
     closeCart() {
@@ -207,9 +216,37 @@ class SushiApp {
 
         cartPanel.classList.remove('active');
         content.classList.remove('shifted');
+
+        // Убираем обработчик ресайза
+        if (this.cartResizeHandler) {
+            window.removeEventListener('resize', this.cartResizeHandler);
+            this.cartResizeHandler = null;
+        }
+
+        // Сбрасываем кастомное позиционирование
+        cartPanel.style.right = '';
+    }
+
+    updateCartPanelPosition() {
+        const cartPanel = document.getElementById('cartPanel');
+        const headerContainer = document.querySelector('.header-container');
+
+        if (!cartPanel || !headerContainer) return;
+
+        if (window.innerWidth >= 1351) {
+            // Для широкого состояния шапки (1300px)
+            const offset = (window.innerWidth - 1300) / 2;
+            cartPanel.style.right = `${offset + 15}px`;
+        } else if (window.innerWidth >= 1201) {
+            // Для узкого состояния шапки (1140px)
+            const offset = (window.innerWidth - 1140) / 2;
+            cartPanel.style.right = `${offset + 15}px`;
+        } else {
+            // Для мобильных устройств - убираем кастомное позиционирование
+            cartPanel.style.right = '';
+        }
     }
 }
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => new SushiApp());
-
