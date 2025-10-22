@@ -159,6 +159,7 @@ class SushiApp {
         const cartClose = document.getElementById('cartClose');
         const cartPanel = document.getElementById('cartPanel');
         const contentSections = document.querySelector('.content-sections');
+        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -195,17 +196,17 @@ class SushiApp {
     openCart() {
         const cartPanel = document.getElementById('cartPanel');
         const contentSections = document.querySelector('.content-sections');
+        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartPanel.classList.add('active');
-        // Обновляем позиционирование при открытии
         this.updateCartPanelPosition();
 
-        // Сдвигаем только секции контента, а не весь контент (исключая hero)
+        // Сдвигаем контент и шапку
         if (window.innerWidth > 768) {
             contentSections.classList.add('shifted');
+            headerWrapper.classList.add('shifted');
         }
 
-        // Добавляем обработчик для обновления позиции при ресайзе
         this.cartResizeHandler = () => this.updateCartPanelPosition();
         window.addEventListener('resize', this.cartResizeHandler);
     }
@@ -213,17 +214,17 @@ class SushiApp {
     closeCart() {
         const cartPanel = document.getElementById('cartPanel');
         const contentSections = document.querySelector('.content-sections');
+        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartPanel.classList.remove('active');
         contentSections.classList.remove('shifted');
+        headerWrapper.classList.remove('shifted');
 
-        // Убираем обработчик ресайза
         if (this.cartResizeHandler) {
             window.removeEventListener('resize', this.cartResizeHandler);
             this.cartResizeHandler = null;
         }
 
-        // Сбрасываем кастомное позиционирование
         cartPanel.style.right = '';
     }
 
@@ -234,19 +235,15 @@ class SushiApp {
         if (!cartPanel || !headerContainer) return;
 
         if (window.innerWidth >= 1351) {
-            // Для широкого состояния шапки (1300px)
             const offset = (window.innerWidth - 1300) / 2;
             cartPanel.style.right = `${offset + 15}px`;
         } else if (window.innerWidth >= 1201) {
-            // Для узкого состояния шапки (1140px)
             const offset = (window.innerWidth - 1140) / 2;
             cartPanel.style.right = `${offset + 15}px`;
         } else {
-            // Для мобильных устройств - убираем кастомное позиционирование
             cartPanel.style.right = '';
         }
     }
 }
 
-// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => new SushiApp());
