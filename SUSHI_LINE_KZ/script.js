@@ -15,6 +15,7 @@ class SushiApp {
     initHeaderBehavior() {
         const header = document.querySelector('.header');
         const headerContainer = document.querySelector('.header-container');
+        const floatingIcons = document.querySelector('.floating-icons');
 
         const updateHeader = () => {
             const scrollY = window.scrollY;
@@ -29,6 +30,11 @@ class SushiApp {
             }
 
             header.classList.toggle('scrolled', scrollY > 50);
+
+           
+            if (floatingIcons) {
+                floatingIcons.classList.toggle('scrolled', scrollY > 200);
+            }
         };
 
         window.addEventListener('scroll', updateHeader);
@@ -201,7 +207,7 @@ class SushiApp {
         cartPanel.classList.add('active');
         this.updateCartPanelPosition();
 
-        // Сдвигаем контент и шапку
+       
         if (window.innerWidth > 768) {
             contentSections.classList.add('shifted');
             headerWrapper.classList.add('shifted');
