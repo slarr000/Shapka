@@ -6,6 +6,143 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ===== ПЛАВАЮЩИЕ ИКОНКИ ===== */
+.floating-icons {
+    position: fixed;
+    top: 15px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-icons-left,
+.floating-icons-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    pointer-events: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.floating-icons-left {
+    margin-left: calc((100vw - 1300px) / 2 + 15px);
+}
+
+.floating-icons-right {
+    margin-right: calc((100vw - 1300px) / 2 + 15px);
+}
+
+
+.floating-icons.scrolled .floating-icons-left {
+    margin-left: 20px;
+}
+
+.floating-icons.scrolled .floating-icons-right {
+    margin-right: 20px;
+}
+
+
+.header-narrow ~ .floating-icons .floating-icons-left {
+    margin-left: calc((100vw - 1140px) / 2 + 15px);
+}
+
+.header-narrow ~ .floating-icons .floating-icons-right {
+    margin-right: calc((100vw - 1140px) / 2 + 15px);
+}
+
+.header-narrow ~ .floating-icons.scrolled .floating-icons-left {
+    margin-left: 20px;
+}
+
+.header-narrow ~ .floating-icons.scrolled .floating-icons-right {
+    margin-right: 20px;
+}
+
+
+.floating-icons .menu,
+.floating-icons .language-button-container,
+.floating-icons .search,
+.floating-icons .cart {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.floating-icons .menu:hover,
+.floating-icons .language-button-container:hover,
+.floating-icons .search:hover,
+.floating-icons .cart:hover {
+    background: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+@media (max-width: 1350px) {
+    .floating-icons-left {
+        margin-left: calc((100vw - 1140px) / 2 + 15px);
+    }
+
+    .floating-icons-right {
+        margin-right: calc((100vw - 1140px) / 2 + 15px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .floating-icons-left {
+        margin-left: 20px;
+    }
+
+    .floating-icons-right {
+        margin-right: 20px;
+    }
+
+    .floating-icons.scrolled .floating-icons-left {
+        margin-left: 20px;
+    }
+
+    .floating-icons.scrolled .floating-icons-right {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-icons {
+        top: 10px;
+    }
+
+    .floating-icons-left,
+    .floating-icons-right {
+        gap: 10px;
+    }
+
+    .floating-icons-left {
+        margin-left: 15px;
+    }
+
+    .floating-icons-right {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-icons-left {
+        margin-left: 10px;
+    }
+
+    .floating-icons-right {
+        margin-right: 10px;
+    }
+}
+
 /* ===== ШАПКА ===== */
 .header {
     position: fixed;
@@ -15,19 +152,20 @@
     background: white;
     z-index: 999;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 85px;
 }
 
 .header.scrolled {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Обертка шапки для сдвига */
+
 .header-wrapper {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0 auto;
 }
 
-/* Состояния ширины обертки шапки */
+
 .header-wide .header-wrapper {
     width: 1300px;
     max-width: 1300px;
@@ -38,38 +176,34 @@
     max-width: 1140px;
 }
 
-/* Сдвиг шапки при открытой корзине */
+
 .header-wrapper.shifted {
     transform: translateX(-390px);
     width: calc(100% - 390px) !important;
     max-width: calc(100% - 390px) !important;
 }
 
-/* Сужаем контейнеры шапки к центру при сдвиге */
-.header-wrapper.shifted .header-container-left {
-    gap: 8px;
-    flex: 0 1 auto;
-}
 
-.header-wrapper.shifted .header-container-right {
-    gap: 8px;
-    flex: 0 1 auto;
-}
-
-/* Контейнер шапки */
 .header-container {
     display: flex;
     background: white;
     height: 85px;
     margin: 0 auto;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 15px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
-/* Состояния ширины шапки */
+
+.header-title h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+
 .header-wide {
     width: 1300px;
     max-width: 1300px;
@@ -80,28 +214,11 @@
     max-width: 1140px;
 }
 
-/* Боковые контейнеры */
-.header-container-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex: 1;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.header-container-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ===== КНОПКИ ШАПКИ ===== */
+/* ===== КНОПКИ ИКОНОК ===== */
 .menu, .language-button-container, .search {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: whitesmoke;
     width: 40px;
     height: 40px;
     border-radius: 20%;
@@ -121,11 +238,6 @@
     border-radius: 20%;
     padding: 0;
     transition: all 0.3s ease;
-}
-
-.menu:hover, .language-button-container:hover, .search:hover {
-    background: #e8e8e8;
-    transform: scale(1.05);
 }
 
 /* ===== ВЫБОР ЯЗЫКА ===== */
@@ -204,18 +316,11 @@
 
 .language-code {
     font-size: 12px;
-    color: #666;
+    color: #fdfdfd;
     font-weight: 600;
     background: #f1f3f4;
     padding: 2px 6px;
     border-radius: 4px;
-}
-
-/* ===== КОНТЕЙНЕР КОРЗИНЫ ===== */
-.cart-container {
-    position: relative;
-    display: flex;
-    align-items: center;
 }
 
 /* ===== КОРЗИНА ===== */
@@ -223,7 +328,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: whitesmoke;
     min-width: 120px;
     height: 50px;
     border-radius: 12px;
@@ -275,7 +379,7 @@
     overflow: hidden;
 }
 
-/* Динамическое позиционирование для широких экранов */
+
 @media (min-width: 1351px) {
     .cart-panel.active {
         right: calc((100vw - 1300px) / 2 + 15px);
@@ -292,7 +396,7 @@
     }
 }
 
-/* Обновляем существующие медиа-запросы для узких экранов */
+
 @media (max-width: 1200px) {
     .cart-panel.active {
         right: 20px;
@@ -311,7 +415,7 @@
     }
 }
 
-/* Контент корзины с ограничением высоты и скроллом */
+
 .cart-content {
     flex: 1;
     padding: 20px;
@@ -339,7 +443,7 @@
     margin: 0;
 }
 
-/* Заголовок корзины */
+
 .cart-header {
     display: flex;
     justify-content: space-between;
@@ -540,23 +644,23 @@
     min-height: calc(100vh - 200px);
 }
 
-/* Сдвигаем только внутренние секции, кроме hero */
+
 .content-sections.shifted {
     transform: translateX(-390px);
 }
 
-/* Контейнер для секций, которые будут сдвигаться */
+
 .content-sections {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Герой-секция - не должна сдвигаться */
+
 .hero {
     transition: none !important;
     transform: none !important;
 }
 
-/* Контейнеры контента с ФИКСИРОВАННОЙ шириной */
+
 .content-container,
 .hero-container,
 .footer-container {
@@ -623,7 +727,7 @@ p {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Сетка меню */
+
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -657,7 +761,7 @@ p {
     margin-top: 15px;
 }
 
-/* Отзывы */
+
 .testimonial {
     background: white;
     padding: 30px;
@@ -718,7 +822,7 @@ p {
     color: #bdc3c7;
 }
 
-/* Контакты в футере */
+
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -750,7 +854,7 @@ p {
         max-width: 100%;
     }
 
-    /* На очень узких экранах добавляем отступы */
+   
     .content-container,
     .hero-container,
     .footer-container {
@@ -784,7 +888,7 @@ p {
         font-size: 2rem;
     }
 
-    /* Отключаем сдвиг контента и шапки на мобильных */
+    
     .content-sections.shifted {
         transform: none;
     }
@@ -795,8 +899,8 @@ p {
         max-width: 100% !important;
     }
 
-    /* Сужаем иконки-кнопки на узких экранах */
-    .header-container-left {
+   
+    .floating-icons-left {
         gap: 10px;
     }
 
@@ -812,7 +916,7 @@ p {
 }
 
 @media (max-width: 480px) {
-    .header-container-left {
+    .floating-icons-left {
         gap: 8px;
     }
 
