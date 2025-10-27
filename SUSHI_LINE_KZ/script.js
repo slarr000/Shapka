@@ -18,7 +18,6 @@ class SushiApp {
         const floatingIcons = document.querySelector('.floating-icons');
 
         const updateHeader = () => {
-            // Не обновляем позицию иконок если корзина открыта
             if (document.body.classList.contains('cart-open')) {
                 return;
             }
@@ -169,7 +168,6 @@ class SushiApp {
         const cartClose = document.getElementById('cartClose');
         const cartPanel = document.getElementById('cartPanel');
         const contentSections = document.querySelector('.content-sections');
-        const headerWrapper = document.querySelector('.header-wrapper');
         const heroContainer = document.querySelector('.hero-container');
 
         cartButton.addEventListener('click', (e) => {
@@ -207,21 +205,17 @@ class SushiApp {
     openCart() {
         const cartPanel = document.getElementById('cartPanel');
         const contentSections = document.querySelector('.content-sections');
-        const headerWrapper = document.querySelector('.header-wrapper');
         const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
 
         cartPanel.classList.add('active');
         this.updateCartPanelPosition();
 
-        // Фиксируем контент и добавляем класс для отключения анимаций иконок
         if (window.innerWidth > 768) {
             contentSections.classList.add('shifted');
-            headerWrapper.classList.add('shifted');
             heroContainer.classList.add('shifted');
             body.classList.add('cart-open');
 
-            // Принудительно устанавливаем позицию иконок на границах шапки
             const floatingIcons = document.querySelector('.floating-icons');
             if (floatingIcons) {
                 floatingIcons.style.transform = 'none';
@@ -236,21 +230,17 @@ class SushiApp {
     closeCart() {
         const cartPanel = document.getElementById('cartPanel');
         const contentSections = document.querySelector('.content-sections');
-        const headerWrapper = document.querySelector('.header-wrapper');
         const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
 
         cartPanel.classList.remove('active');
         contentSections.classList.remove('shifted');
-        headerWrapper.classList.remove('shifted');
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        // Восстанавливаем нормальное поведение иконок
         const floatingIcons = document.querySelector('.floating-icons');
         if (floatingIcons) {
             floatingIcons.style.transform = '';
-            // Обновляем позицию иконок согласно скроллу
             this.updateFloatingIconsPosition();
         }
 
@@ -270,16 +260,15 @@ class SushiApp {
 
         if (window.innerWidth >= 1351) {
             const offset = (window.innerWidth - 1300) / 2;
-            cartPanel.style.right = `${offset + 5}px`;
+            cartPanel.style.right = `${offset}px`;
         } else if (window.innerWidth >= 1201) {
             const offset = (window.innerWidth - 1140) / 2;
-            cartPanel.style.right = `${offset + 5}px`;
+            cartPanel.style.right = `${offset}px`;
         } else {
             cartPanel.style.right = '';
         }
     }
 
-    // Метод для обновления позиции иконок
     updateFloatingIconsPosition() {
         const floatingIcons = document.querySelector('.floating-icons');
         const scrollY = window.scrollY;
