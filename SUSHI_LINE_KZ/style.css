@@ -11,21 +11,23 @@ body.cart-open .floating-icons {
     transition: none !important;
 }
 
+/* УБИРАЕМ ИЗМЕНЕНИЯ ОТСТУПОВ ПРИ ОТКРЫТОЙ КОРЗИНЕ */
 body.cart-open .floating-icons-left {
-    margin-left: calc((100vw - 1300px) / 2 + 15px) !important;
+    margin-left: calc((100vw - 1300px) / 2 + 100px) !important;
 }
 
 body.cart-open .floating-icons-right {
-    margin-right: calc((100vw - 1300px) / 2 + 15px) !important;
+    margin-right: calc((100vw - 1300px) / 2 + 100px) !important;
 }
 
+/* ОБНОВЛЯЕМ МЕДИА-ЗАПРОСЫ ДЛЯ ОТКРЫТОЙ КОРЗИНЫ */
 @media (max-width: 1350px) {
     body.cart-open .floating-icons-left {
-        margin-left: calc((100vw - 1140px) / 2 + 15px) !important;
+        margin-left: calc((100vw - 1140px) / 2 + 80px) !important;
     }
 
     body.cart-open .floating-icons-right {
-        margin-right: calc((100vw - 1140px) / 2 + 15px) !important;
+        margin-right: calc((100vw - 1140px) / 2 + 80px) !important;
     }
 }
 
@@ -192,13 +194,14 @@ body.cart-open .floating-icons-right {
     }
 }
 
+
 /* ===== ШАПКА ===== */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: #a5ffed;
+    background: #ffffff;
     z-index: 999;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     height: 85px;
@@ -226,7 +229,7 @@ body.cart-open .floating-icons-right {
 
 .header-container {
     display: flex;
-    background: #436683;
+    background: #ffffff;
     height: 85px;
     margin: 0 auto;
     align-items: center;
