@@ -5,13 +5,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== ФИКСАЦИЯ ИКОНОК ПРИ ОТКРЫТОЙ КОРЗИНЕ ===== */
 body.cart-open .floating-icons {
     transform: none !important;
     transition: none !important;
 }
 
-/* УБИРАЕМ ИЗМЕНЕНИЯ ОТСТУПОВ ПРИ ОТКРЫТОЙ КОРЗИНЕ */
 body.cart-open .floating-icons-left {
     margin-left: calc((100vw - 1300px) / 2 + 100px) !important;
 }
@@ -20,12 +18,10 @@ body.cart-open .floating-icons-right {
     margin-right: calc((100vw - 1300px) / 2 + 100px) !important;
 }
 
-/* ОБНОВЛЯЕМ МЕДИА-ЗАПРОСЫ ДЛЯ ОТКРЫТОЙ КОРЗИНЫ */
 @media (max-width: 1350px) {
     body.cart-open .floating-icons-left {
         margin-left: calc((100vw - 1140px) / 2 + 80px) !important;
     }
-
     body.cart-open .floating-icons-right {
         margin-right: calc((100vw - 1140px) / 2 + 80px) !important;
     }
@@ -35,7 +31,6 @@ body.cart-open .floating-icons-right {
     body.cart-open .floating-icons-left {
         margin-left: 20px !important;
     }
-
     body.cart-open .floating-icons-right {
         margin-right: 20px !important;
     }
@@ -45,7 +40,6 @@ body.cart-open .floating-icons-right {
     body.cart-open .floating-icons-left {
         margin-left: 15px !important;
     }
-
     body.cart-open .floating-icons-right {
         margin-right: 15px !important;
     }
@@ -55,13 +49,11 @@ body.cart-open .floating-icons-right {
     body.cart-open .floating-icons-left {
         margin-left: 10px !important;
     }
-
     body.cart-open .floating-icons-right {
         margin-right: 10px !important;
     }
 }
 
-/* ===== ПЛАВАЮЩИЕ ИКОНКИ ===== */
 .floating-icons {
     position: fixed;
     top: 15px;
@@ -85,7 +77,6 @@ body.cart-open .floating-icons-right {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ОБНОВЛЕНО: Уменьшены отступы для сдвига иконок ближе к центру */
 .floating-icons-left {
     margin-left: calc((100vw - 1300px) / 2 + 100px);
 }
@@ -141,7 +132,6 @@ body.cart-open .floating-icons-right {
     .floating-icons-left {
         margin-left: calc((100vw - 1140px) / 2 + 80px);
     }
-
     .floating-icons-right {
         margin-right: calc((100vw - 1140px) / 2 + 80px);
     }
@@ -151,15 +141,12 @@ body.cart-open .floating-icons-right {
     .floating-icons-left {
         margin-left: 20px;
     }
-
     .floating-icons-right {
         margin-right: 20px;
     }
-
     .floating-icons.scrolled .floating-icons-left {
         margin-left: 20px;
     }
-
     .floating-icons.scrolled .floating-icons-right {
         margin-right: 20px;
     }
@@ -169,16 +156,13 @@ body.cart-open .floating-icons-right {
     .floating-icons {
         top: 10px;
     }
-
     .floating-icons-left,
     .floating-icons-right {
         gap: 10px;
     }
-
     .floating-icons-left {
         margin-left: 15px;
     }
-
     .floating-icons-right {
         margin-right: 15px;
     }
@@ -188,13 +172,11 @@ body.cart-open .floating-icons-right {
     .floating-icons-left {
         margin-left: 10px;
     }
-
     .floating-icons-right {
         margin-right: 10px;
     }
 }
 
-/* ===== ШАПКА ===== */
 .header {
     position: fixed;
     top: 0;
@@ -254,7 +236,6 @@ body.cart-open .floating-icons-right {
     max-width: 1140px;
 }
 
-/* ===== КНОПКИ ИКОНОК ===== */
 .menu, .language-button-container, .search {
     display: flex;
     justify-content: center;
@@ -280,7 +261,6 @@ body.cart-open .floating-icons-right {
     transition: all 0.3s ease;
 }
 
-/* ===== ВЫБОР ЯЗЫКА ===== */
 .language-selector {
     position: relative;
     display: inline-block;
@@ -363,7 +343,6 @@ body.cart-open .floating-icons-right {
     border-radius: 4px;
 }
 
-/* ===== КОРЗИНА ===== */
 .cart {
     display: flex;
     justify-content: center;
@@ -402,7 +381,6 @@ body.cart-open .floating-icons-right {
     white-space: nowrap;
 }
 
-/* ===== ОСНОВНОЙ КОНТЕНТ И КОРЗИНА КАК ЧАСТЬ МАКЕТА ===== */
 .content {
     margin-top: 85px;
     min-height: calc(100vh - 200px);
@@ -425,7 +403,6 @@ body.cart-open .floating-icons-right {
     box-sizing: border-box;
 }
 
-/* Корзина как часть макета - скрыта по умолчанию */
 .cart-panel {
     width: 0;
     opacity: 0;
@@ -505,7 +482,6 @@ body.cart-open .floating-icons-right {
     color: #333;
 }
 
-/* Сжимаем контент когда корзина открыта */
 body.cart-open .content-sections {
     max-width: calc(1300px - 400px);
 }
@@ -514,11 +490,9 @@ body.cart-open .content-sections {
     .main-container {
         max-width: 1500px;
     }
-
     body.cart-open .content-sections {
         max-width: calc(1140px - 400px);
     }
-
     .cart-panel.active {
         margin-right: calc((100vw - 1500px) / 2);
     }
@@ -529,11 +503,9 @@ body.cart-open .content-sections {
         max-width: 100%;
         padding: 0 20px;
     }
-
     body.cart-open .content-sections {
         max-width: calc(100% - 400px);
     }
-
     .cart-panel.active {
         margin-right: 20px;
     }
@@ -543,8 +515,6 @@ body.cart-open .content-sections {
     .main-container {
         padding: 0 15px;
     }
-
-    /* На мобильных корзина становится всплывающей */
     .cart-panel {
         position: fixed;
         top: 85px;
@@ -557,14 +527,12 @@ body.cart-open .content-sections {
         border-radius: 12px;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .cart-panel.active {
         right: 15px;
         width: calc(100vw - 30px);
         opacity: 1;
         visibility: visible;
     }
-
     body.cart-open .content-sections {
         max-width: 100%;
     }
@@ -577,7 +545,6 @@ body.cart-open .content-sections {
     }
 }
 
-/* ===== ПОИСК ===== */
 .search-container {
     position: relative;
 }
@@ -683,17 +650,10 @@ body.cart-open .content-sections {
     color: #007bff;
 }
 
-/* ===== АНИМАЦИИ ===== */
 @keyframes searchPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(0, 123, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
 }
 
 .search-pulse {
@@ -701,34 +661,15 @@ body.cart-open .content-sections {
 }
 
 @keyframes amountIncrease {
-    0% {
-        transform: scale(1);
-        color: #333;
-    }
-    50% {
-        transform: scale(1.1);
-        color: #27ae60;
-        font-weight: 700;
-    }
-    100% {
-        transform: scale(1);
-        color: #333;
-    }
+    0% { transform: scale(1); color: #333; }
+    50% { transform: scale(1.1); color: #27ae60; font-weight: 700; }
+    100% { transform: scale(1); color: #333; }
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4);
-        background: whitesmoke;
-    }
-    50% {
-        box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2);
-        background: #f0fff4;
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
-        background: whitesmoke;
-    }
+    0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); background: whitesmoke; }
+    50% { box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2); background: #f0fff4; }
+    100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); background: whitesmoke; }
 }
 
 .amount-increasing {
@@ -739,7 +680,6 @@ body.cart-open .content-sections {
     animation: pulse 2s ease-out;
 }
 
-/* ===== ГЕРОЙ-СЕКЦИЯ С ФОНОМ ===== */
 .hero {
     position: relative;
     padding: 0;
@@ -809,27 +749,14 @@ body.cart-open .content-sections {
 }
 
 @media (max-width: 768px) {
-    .hero {
-        height: 500px;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
+    .hero { height: 500px; }
+    .hero h1 { font-size: 2.5rem; }
 }
 
 @media (max-width: 480px) {
-    .hero {
-        height: 400px;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
+    .hero { height: 400px; }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
 }
 
 .content-container,
@@ -906,7 +833,6 @@ p {
     font-weight: bold;
 }
 
-/* ===== ФУТЕР ===== */
 .footer {
     background: #2c3e50;
     color: white;
@@ -961,7 +887,6 @@ p {
     color: #bdc3c7;
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 1350px) {
     .header-wide {
         width: 1140px;
@@ -973,12 +898,10 @@ p {
     .header-container {
         padding: 15px 20px;
     }
-
     .header-wide, .header-narrow {
         width: 100%;
         max-width: 100%;
     }
-
     .content-container,
     .footer-container {
         max-width: 100%;
@@ -991,21 +914,15 @@ p {
         min-width: 280px;
         left: -120px;
     }
-
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-
-    .floating-icons-left {
-        gap: 10px;
-    }
-
+    .floating-icons-left { gap: 10px; }
     .menu, .language-button-container, .search {
         width: 35px;
         height: 35px;
     }
-
     .cart {
         min-width: 100px;
         height: 45px;
@@ -1013,22 +930,15 @@ p {
 }
 
 @media (max-width: 480px) {
-    .floating-icons-left {
-        gap: 8px;
-    }
-
+    .floating-icons-left { gap: 8px; }
     .menu, .language-button-container, .search {
         width: 32px;
         height: 32px;
     }
-
     .cart {
         min-width: 90px;
         height: 40px;
         padding: 0 10px;
     }
-
-    .cart-amount {
-        font-size: 12px;
-    }
+    .cart-amount { font-size: 12px; }
 }
