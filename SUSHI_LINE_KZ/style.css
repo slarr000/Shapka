@@ -252,6 +252,41 @@ body.cart-open .floating-icons-right {
     max-width: 1140px;
 }
 
+/* СТИЛИ ДЛЯ СУЖЕНИЯ ШАПКИ ПРИ ОТКРЫТОЙ КОРЗИНЕ */
+body.cart-open .header-container {
+    width: 1140px !important;
+    max-width: 1140px !important;
+}
+
+body.cart-open .header-wrapper {
+    width: 1140px !important;
+    max-width: 1140px !important;
+}
+
+@media (max-width: 1350px) {
+    body.cart-open .header-container {
+        width: 1140px !important;
+        max-width: 1140px !important;
+    }
+
+    body.cart-open .header-wrapper {
+        width: 1140px !important;
+        max-width: 1140px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    body.cart-open .header-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    body.cart-open .header-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
 /* ===== КНОПКИ ИКОНОК ===== */
 .menu, .language-button-container, .search {
     display: flex;
@@ -1056,8 +1091,6 @@ p {
 
 body.cart-open .header-wrapper {
     transform: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
     margin: 0 auto;
 }
 
