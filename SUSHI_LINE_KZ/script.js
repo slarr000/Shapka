@@ -1,14 +1,6 @@
 class SushiApp {
     constructor() {
-        this.cartResizeHandler = null;
         this.init();
-
-        // Добавляем обработчик ресайза для обновления позиции корзины
-        window.addEventListener('resize', () => {
-            if (document.body.classList.contains('cart-open')) {
-                this.updateCartPanelPosition();
-            }
-        });
     }
 
     init() {
@@ -29,12 +21,6 @@ class SushiApp {
             const scrollY = window.scrollY;
             const windowWidth = window.innerWidth;
 
-            // Если корзина открыта, обновляем только позицию корзины
-            if (document.body.classList.contains('cart-open')) {
-                this.updateCartPanelPosition();
-                return;
-            }
-
             if (windowWidth >= 1350) {
                 headerContainer.classList.toggle('header-narrow', scrollY <= 200);
                 headerContainer.classList.toggle('header-wide', scrollY > 200);
@@ -51,11 +37,6 @@ class SushiApp {
 
             if (floatingIcons) {
                 floatingIcons.classList.toggle('scrolled', scrollY > 200);
-            }
-
-            // Обновляем позицию корзины при скролле, если она открыта
-            if (document.body.classList.contains('cart-open')) {
-                this.updateCartPanelPosition();
             }
         };
 
@@ -186,8 +167,6 @@ class SushiApp {
         const cartButton = document.querySelector('.cart-button');
         const cartClose = document.getElementById('cartClose');
         const cartPanel = document.getElementById('cartPanel');
-        const contentSections = document.querySelector('.content-sections');
-        const heroContainer = document.querySelector('.hero-container');
 
         cartButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -226,134 +205,18 @@ class SushiApp {
 
     openCart() {
         const cartPanel = document.getElementById('cartPanel');
-        const contentSections = document.querySelector('.content-sections');
-        const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartPanel.classList.add('active');
-        this.updateCartPanelPosition();
-
-        if (window.innerWidth > 768) {
-            contentSections.classList.add('shifted');
-            heroContainer.classList.add('shifted');
-            body.classList.add('cart-open');
-
-            // Добавляем класс для сужения шапки
-            headerContainer.classList.remove('header-wide');
-            headerContainer.classList.add('header-narrow');
-            headerWrapper.classList.remove('header-wide');
-            headerWrapper.classList.add('header-narrow');
-
-            const floatingIcons = document.querySelector('.floating-icons');
-            if (floatingIcons) {
-                floatingIcons.style.transform = 'none';
-                floatingIcons.classList.remove('scrolled');
-            }
-        }
-
-        this.cartResizeHandler = () => this.updateCartPanelPosition();
-        window.addEventListener('resize', this.cartResizeHandler);
+        body.classList.add('cart-open');
     }
 
     closeCart() {
         const cartPanel = document.getElementById('cartPanel');
-        const contentSections = document.querySelector('.content-sections');
-        const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartPanel.classList.remove('active');
-        contentSections.classList.remove('shifted');
-        heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
-
-        // Возвращаем шапку к исходному состоянию
-        headerContainer.classList.remove('header-narrow');
-        headerContainer.classList.add('header-wide');
-        headerWrapper.classList.remove('header-narrow');
-        headerWrapper.classList.add('header-wide');
-
-        const floatingIcons = document.querySelector('.floating-icons');
-        if (floatingIcons) {
-            floatingIcons.style.transform = '';
-            this.updateFloatingIconsPosition();
-        }
-
-        if (this.cartResizeHandler) {
-            window.removeEventListener('resize', this.cartResizeHandler);
-            this.cartResizeHandler = null;
-        }
-
-        cartPanel.style.left = '';
-
-        // Вызываем обновление заголовка для восстановления правильного состояния
-        this.updateHeader();
-    }
-
-    updateCartPanelPosition() {
-        const cartPanel = document.getElementById('cartPanel');
-        const headerContainer = document.querySelector('.header-container');
-
-        if (!cartPanel || !headerContainer) return;
-
-        // Для мобильных устройств оставляем стандартное позиционирование
-        if (window.innerWidth <= 1200) {
-            cartPanel.style.left = 'auto';
-            cartPanel.style.right = '10px';
-            return;
-        }
-
-        // Получаем положение шапки
-        const headerRect = headerContainer.getBoundingClientRect();
-
-        // Вычисляем левый край корзины - он должен совпадать с правым краем шапки
-        const headerRight = headerRect.right;
-
-        // Устанавливаем позицию корзины так, чтобы ее левый край был у правого края шапки
-        cartPanel.style.left = `${headerRight}px`;
-        cartPanel.style.right = 'auto';
-    }
-
-    updateHeader() {
-        const header = document.querySelector('.header');
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
-        const floatingIcons = document.querySelector('.floating-icons');
-
-        if (!headerContainer || document.body.classList.contains('cart-open')) return;
-
-        const scrollY = window.scrollY;
-        const windowWidth = window.innerWidth;
-
-        if (windowWidth >= 1350) {
-            headerContainer.classList.toggle('header-narrow', scrollY <= 200);
-            headerContainer.classList.toggle('header-wide', scrollY > 200);
-            headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
-            headerWrapper.classList.toggle('header-wide', scrollY > 200);
-        } else {
-            headerContainer.classList.add('header-narrow');
-            headerContainer.classList.remove('header-wide');
-            headerWrapper.classList.add('header-narrow');
-            headerWrapper.classList.remove('header-wide');
-        }
-
-        header.classList.toggle('scrolled', scrollY > 50);
-
-        if (floatingIcons) {
-            floatingIcons.classList.toggle('scrolled', scrollY > 200);
-        }
-    }
-
-    updateFloatingIconsPosition() {
-        const floatingIcons = document.querySelector('.floating-icons');
-        const scrollY = window.scrollY;
-
-        if (floatingIcons) {
-            floatingIcons.classList.toggle('scrolled', scrollY > 200);
-        }
     }
 }
 
