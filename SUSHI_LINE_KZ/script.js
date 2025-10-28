@@ -22,6 +22,7 @@ class SushiApp {
     initHeaderBehavior() {
         const header = document.querySelector('.header');
         const headerContainer = document.querySelector('.header-container');
+        const headerWrapper = document.querySelector('.header-wrapper');
         const floatingIcons = document.querySelector('.floating-icons');
 
         const updateHeader = () => {
@@ -37,9 +38,13 @@ class SushiApp {
             if (windowWidth >= 1350) {
                 headerContainer.classList.toggle('header-narrow', scrollY <= 200);
                 headerContainer.classList.toggle('header-wide', scrollY > 200);
+                headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
+                headerWrapper.classList.toggle('header-wide', scrollY > 200);
             } else {
                 headerContainer.classList.add('header-narrow');
                 headerContainer.classList.remove('header-wide');
+                headerWrapper.classList.add('header-narrow');
+                headerWrapper.classList.remove('header-wide');
             }
 
             header.classList.toggle('scrolled', scrollY > 50);
@@ -224,6 +229,8 @@ class SushiApp {
         const contentSections = document.querySelector('.content-sections');
         const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
+        const headerContainer = document.querySelector('.header-container');
+        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartPanel.classList.add('active');
         this.updateCartPanelPosition();
@@ -232,6 +239,12 @@ class SushiApp {
             contentSections.classList.add('shifted');
             heroContainer.classList.add('shifted');
             body.classList.add('cart-open');
+
+            // Добавляем класс для сужения шапки
+            headerContainer.classList.remove('header-wide');
+            headerContainer.classList.add('header-narrow');
+            headerWrapper.classList.remove('header-wide');
+            headerWrapper.classList.add('header-narrow');
 
             const floatingIcons = document.querySelector('.floating-icons');
             if (floatingIcons) {
@@ -249,11 +262,19 @@ class SushiApp {
         const contentSections = document.querySelector('.content-sections');
         const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
+        const headerContainer = document.querySelector('.header-container');
+        const headerWrapper = document.querySelector('.header-wrapper');
 
         cartPanel.classList.remove('active');
         contentSections.classList.remove('shifted');
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
+
+        // Возвращаем шапку к исходному состоянию
+        headerContainer.classList.remove('header-narrow');
+        headerContainer.classList.add('header-wide');
+        headerWrapper.classList.remove('header-narrow');
+        headerWrapper.classList.add('header-wide');
 
         const floatingIcons = document.querySelector('.floating-icons');
         if (floatingIcons) {
@@ -267,6 +288,9 @@ class SushiApp {
         }
 
         cartPanel.style.left = '';
+
+        // Вызываем обновление заголовка для восстановления правильного состояния
+        this.updateHeader();
     }
 
     updateCartPanelPosition() {
@@ -291,6 +315,36 @@ class SushiApp {
         // Устанавливаем позицию корзины так, чтобы ее левый край был у правого края шапки
         cartPanel.style.left = `${headerRight}px`;
         cartPanel.style.right = 'auto';
+    }
+
+    updateHeader() {
+        const header = document.querySelector('.header');
+        const headerContainer = document.querySelector('.header-container');
+        const headerWrapper = document.querySelector('.header-wrapper');
+        const floatingIcons = document.querySelector('.floating-icons');
+
+        if (!headerContainer || document.body.classList.contains('cart-open')) return;
+
+        const scrollY = window.scrollY;
+        const windowWidth = window.innerWidth;
+
+        if (windowWidth >= 1350) {
+            headerContainer.classList.toggle('header-narrow', scrollY <= 200);
+            headerContainer.classList.toggle('header-wide', scrollY > 200);
+            headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
+            headerWrapper.classList.toggle('header-wide', scrollY > 200);
+        } else {
+            headerContainer.classList.add('header-narrow');
+            headerContainer.classList.remove('header-wide');
+            headerWrapper.classList.add('header-narrow');
+            headerWrapper.classList.remove('header-wide');
+        }
+
+        header.classList.toggle('scrolled', scrollY > 50);
+
+        if (floatingIcons) {
+            floatingIcons.classList.toggle('scrolled', scrollY > 200);
+        }
     }
 
     updateFloatingIconsPosition() {
