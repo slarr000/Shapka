@@ -102,99 +102,101 @@
             </div>
         </div>
     </div>
-
-    <div class="cart-panel" id="cartPanel">
-        <div class="cart-header">
-            <h2 class="cart-title">Мой заказ</h2>
-            <button class="cart-close" id="cartClose">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button>
-        </div>
-        <div class="cart-content">
-            <div class="cart-empty">
-                <svg width="23" height="21" viewBox="0 0 23 21" fill="none">
-                    <path d="M20.8333 8.125L19.1002 16.9452C18.8864 18.0334 18.7795 18.5775 18.5004 18.9844C18.2543 19.3433 17.9155 19.626 17.5215 19.8012C17.0747 20 16.5296 20 15.4394 20H7.5606C6.47038 20 5.92527 20 5.47847 19.8012C5.08446 19.626 4.7457 19.3433 4.49958 18.9844C4.22048 18.5775 4.11358 18.0334 3.89977 16.9452L2.16667 8.125M1 8.125H22M6.83333 11.6875V11.6994M16.1667 11.6875V11.6994M4.5 8.125L8 1M18.5 8.125L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <p>Ваша корзина пуста</p>
-            </div>
-        </div>
-    </div>
 </header>
 
 <main class="content">
-    <section class="hero">
-        <div class="hero-background">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1>Суши-бар "Сакура"</h1>
-                    <p>Лучшие суши и роллы в городе</p>
-                    <button class="order-button">Сделать заказ</button>
+    <div class="main-container">
+        <div class="content-sections">
+            <section class="hero">
+                <div class="hero-background">
+                    <div class="hero-container">
+                        <div class="hero-content">
+                            <h1>Суши-бар "Сакура"</h1>
+                            <p>Лучшие суши и роллы в городе</p>
+                            <button class="order-button">Сделать заказ</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about">
+                <div class="content-container">
+                    <h2>О нас</h2>
+                    <p>Мы готовим самые вкусные суши из свежих ингредиентов. Наш шеф-повар создает уникальные рецепты.</p>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <div class="content-container">
+                    <h2>Наше меню</h2>
+                    <div class="menu-grid">
+                        <div class="menu-item">
+                            <h3>Филадельфия</h3>
+                            <p>Лосось, сливочный сыр, огурец</p>
+                            <span class="price">2500 ₸</span>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Калифорния</h3>
+                            <p>Краб, авокадо, огурец, икра</p>
+                            <span class="price">2200 ₸</span>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Унаги</h3>
+                            <p>Угорь, соус унаги, огурец</p>
+                            <span class="price">2800 ₸</span>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Темпура</h3>
+                            <p>Креветка в темпуре, авокадо, соус</p>
+                            <span class="price">2700 ₸</span>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Сашими</h3>
+                            <p>Ассорти из свежей рыбы</p>
+                            <span class="price">3200 ₸</span>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Дракон</h3>
+                            <p>Угорь, авокадо, огурец, соус</p>
+                            <span class="price">2900 ₸</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="testimonials">
+                <div class="content-container">
+                    <h2>Отзывы</h2>
+                    <div class="testimonial">
+                        <p>"Лучшие суши в городе! Всегда свежие ингредиенты и быстрая доставка."</p>
+                        <span>- Мария</span>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Обожаю роллы Филадельфия от Сакуры! Нигде больше таких не пробовала."</p>
+                        <span>- Алина</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="cart-panel" id="cartPanel">
+            <div class="cart-header">
+                <h2 class="cart-title">Мой заказ</h2>
+                <button class="cart-close" id="cartClose">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="cart-content">
+                <div class="cart-empty">
+                    <svg width="23" height="21" viewBox="0 0 23 21" fill="none">
+                        <path d="M20.8333 8.125L19.1002 16.9452C18.8864 18.0334 18.7795 18.5775 18.5004 18.9844C18.2543 19.3433 17.9155 19.626 17.5215 19.8012C17.0747 20 16.5296 20 15.4394 20H7.5606C6.47038 20 5.92527 20 5.47847 19.8012C5.08446 19.626 4.7457 19.3433 4.49958 18.9844C4.22048 18.5775 4.11358 18.0334 3.89977 16.9452L2.16667 8.125M1 8.125H22M6.83333 11.6875V11.6994M16.1667 11.6875V11.6994M4.5 8.125L8 1M18.5 8.125L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p>Ваша корзина пуста</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <div class="content-sections">
-        <section class="about">
-            <div class="content-container">
-                <h2>О нас</h2>
-                <p>Мы готовим самые вкусные суши из свежих ингредиентов. Наш шеф-повар создает уникальные рецепты.</p>
-            </div>
-        </section>
-
-        <section class="menu-section">
-            <div class="content-container">
-                <h2>Наше меню</h2>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <h3>Филадельфия</h3>
-                        <p>Лосось, сливочный сыр, огурец</p>
-                        <span class="price">2500 ₸</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Калифорния</h3>
-                        <p>Краб, авокадо, огурец, икра</p>
-                        <span class="price">2200 ₸</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Унаги</h3>
-                        <p>Угорь, соус унаги, огурец</p>
-                        <span class="price">2800 ₸</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Темпура</h3>
-                        <p>Креветка в темпуре, авокадо, соус</p>
-                        <span class="price">2700 ₸</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Сашими</h3>
-                        <p>Ассорти из свежей рыбы</p>
-                        <span class="price">3200 ₸</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Дракон</h3>
-                        <p>Угорь, авокадо, огурец, соус</p>
-                        <span class="price">2900 ₸</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials">
-            <div class="content-container">
-                <h2>Отзывы</h2>
-                <div class="testimonial">
-                    <p>"Лучшие суши в городе! Всегда свежие ингредиенты и быстрая доставка."</p>
-                    <span>- Мария</span>
-                </div>
-                <div class="testimonial">
-                    <p>"Обожаю роллы Филадельфия от Сакуры! Нигде больше таких не пробовала."</p>
-                    <span>- Алина</span>
-                </div>
-            </div>
-        </section>
     </div>
 </main>
 
