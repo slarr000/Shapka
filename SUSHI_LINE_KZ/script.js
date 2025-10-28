@@ -2,6 +2,13 @@ class SushiApp {
     constructor() {
         this.cartResizeHandler = null;
         this.init();
+
+        // Добавляем обработчик ресайза для обновления позиции корзины
+        window.addEventListener('resize', () => {
+            if (document.body.classList.contains('cart-open')) {
+                this.updateCartPanelPosition();
+            }
+        });
     }
 
     init() {
@@ -18,12 +25,14 @@ class SushiApp {
         const floatingIcons = document.querySelector('.floating-icons');
 
         const updateHeader = () => {
-            if (document.body.classList.contains('cart-open')) {
-                return;
-            }
-
             const scrollY = window.scrollY;
             const windowWidth = window.innerWidth;
+
+            // Если корзина открыта, обновляем только позицию корзины
+            if (document.body.classList.contains('cart-open')) {
+                this.updateCartPanelPosition();
+                return;
+            }
 
             if (windowWidth >= 1350) {
                 headerContainer.classList.toggle('header-narrow', scrollY <= 200);
@@ -37,6 +46,11 @@ class SushiApp {
 
             if (floatingIcons) {
                 floatingIcons.classList.toggle('scrolled', scrollY > 200);
+            }
+
+            // Обновляем позицию корзины при скролле, если она открыта
+            if (document.body.classList.contains('cart-open')) {
+                this.updateCartPanelPosition();
             }
         };
 
@@ -176,7 +190,10 @@ class SushiApp {
             this.toggleCart();
         });
 
-        cartClose.addEventListener('click', () => this.closeCart());
+        cartClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.closeCart();
+        });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && cartPanel.classList.contains('active')) {
@@ -187,7 +204,7 @@ class SushiApp {
         document.addEventListener('click', (e) => {
             if (cartPanel.classList.contains('active') &&
                 !cartPanel.contains(e.target) &&
-                !cartButton.contains(e.target)) {
+                !e.target.closest('.cart-button')) {
                 this.closeCart();
             }
         });
@@ -249,7 +266,7 @@ class SushiApp {
             this.cartResizeHandler = null;
         }
 
-        cartPanel.style.right = '';
+        cartPanel.style.left = '';
     }
 
     updateCartPanelPosition() {
@@ -258,15 +275,22 @@ class SushiApp {
 
         if (!cartPanel || !headerContainer) return;
 
-        if (window.innerWidth >= 1351) {
-            const offset = (window.innerWidth - 1300) / 2;
-            cartPanel.style.right = `${offset}px`;
-        } else if (window.innerWidth >= 1201) {
-            const offset = (window.innerWidth - 1140) / 2;
-            cartPanel.style.right = `${offset}px`;
-        } else {
-            cartPanel.style.right = '';
+        // Для мобильных устройств оставляем стандартное позиционирование
+        if (window.innerWidth <= 1200) {
+            cartPanel.style.left = 'auto';
+            cartPanel.style.right = '10px';
+            return;
         }
+
+        // Получаем положение шапки
+        const headerRect = headerContainer.getBoundingClientRect();
+
+        // Вычисляем левый край корзины - он должен совпадать с правым краем шапки
+        const headerRight = headerRect.right;
+
+        // Устанавливаем позицию корзины так, чтобы ее левый край был у правого края шапки
+        cartPanel.style.left = `${headerRight}px`;
+        cartPanel.style.right = 'auto';
     }
 
     updateFloatingIconsPosition() {
