@@ -251,13 +251,11 @@ class SushiApp {
 
         if (!cartPanel || !contentSections || !heroContainer || !body || !headerContainer || !headerWrapper) return;
 
-        // Сначала переводим шапку в узкое состояние
         headerContainer.classList.remove('header-wide');
         headerContainer.classList.add('header-narrow');
         headerWrapper.classList.remove('header-wide');
         headerWrapper.classList.add('header-narrow');
 
-        // Затем открываем корзину и обновляем позицию
         cartPanel.classList.add('active');
 
         if (window.innerWidth > 768) {
@@ -291,7 +289,6 @@ class SushiApp {
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        // Возвращаем шапку в исходное состояние
         const scrollY = window.scrollY;
         if (window.innerWidth >= 1350) {
             headerContainer.classList.toggle('header-narrow', scrollY <= 200);
@@ -326,7 +323,6 @@ class SushiApp {
             return;
         }
 
-        // Всегда используем расчет для узкой шапки (1140px) при открытой корзине
         cartPanel.style.right = 'calc((100vw - 1140px) / 2 - 375px)';
     }
 
