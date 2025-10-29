@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Суши-бар Сакура - лучшие суши и роллы в городе. Свежие ингредиенты, быстрая доставка.">
     <link rel="stylesheet" href="style.css">
-    <title>Суши-бар "Сакура"</title>
+    <title>Суши-бар "Сакура" - Лучшие суши и роллы</title>
 </head>
 <body>
 
 <div class="floating-icons">
     <div class="floating-icons-left">
         <div class="menu">
-            <button class="menu-button">
-                <svg height="20px" width="20px" viewBox="0 0 512 512" fill="#000000">
+            <button class="menu-button" aria-label="Открыть меню">
+                <svg height="20px" width="20px" viewBox="0 0 512 512" fill="#000000" role="img" aria-label="Иконка меню">
                     <path d="M50.047,0C22.404,0,0,22.4,0,50.047c0,27.646,22.404,50.046,50.047,50.046c27.642,0,50.046-22.4,50.046-50.046 C100.093,22.4,77.689,0,50.047,0z M256,0c-27.642,0-50.047,22.4-50.047,50.047c0,27.646,22.404,50.046,50.047,50.046 c27.642,0,50.047-22.4,50.047-50.046C306.047,22.4,283.642,0,256,0z M461.953,100.093c27.638,0,50.047-22.4,50.047-50.046 C512,22.4,489.591,0,461.953,0 s-50.046,22.4-50.046,50.047C411.907,77.693,434.315,100.093,461.953,100.093z M50.047,205.953C22.404,205.953,0,228.353,0,256s22.404,50.047,50.047,50.047 c27.642,0,50.046-22.4,50.046-50.047S77.689,205.953,50.047,205.953z M256,205.953c-27.642,0-50.047,22.4-50.047,50.047s22.404,50.047,50.047,50.047 c27.642,0,50.047-22.4,50.047-50.047S283.642,205.953,256,205.953z M461.953,205.953c-27.638,0-50.046,22.4-50.046,50.047s22.408,50.047,50.046,50.047S512,283.647,512,256 S489.591,205.953,461.953,205.953z M50.047,411.907C22.404,411.907,0,434.307,0,461.953C0,489.6,22.404,512,50.047,512 c27.642,0,50.046-22.4,50.046-50.047C100.093,434.307,77.689,411.907,50.047,411.907z M256,411.907c-27.642,0-50.047,22.4-50.047,50.046C205.953,489.6,228.358,512,256,512 c27.642,0,50.047-22.4,50.047-50.047C306.047,434.307,283.642,411.907,256,411.907z M461.953,411.907c-27.638,0-50.046,22.4-50.046,50.046c0,27.647,22.408,50.047,50.046,50.047 S512,489.6,512,461.953C512,434.307,489.591,411.907,461.953,411.907z"/>
                 </svg>
             </button>
@@ -20,61 +21,65 @@
 
         <div class="language-selector">
             <div class="language-button-container">
-                <button class="language-button" id="languageButton">
-                    <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+                <button class="language-button" id="languageButton" aria-label="Выбор языка" aria-expanded="false">
+                    <svg width="30" height="30" viewBox="0 0 40 40" fill="none" role="img" aria-label="Текущий язык: Русский">
                         <rect width="40" height="40" rx="8" fill="whitesmoke"/>
                         <text x="20" y="25" text-anchor="middle" fill="#495057" font-weight="bold" font-size="16">RU</text>
                     </svg>
                 </button>
             </div>
 
-            <div class="language-dropdown" id="languageDropdown">
-                <div class="language-option" data-lang="ru">
+            <div class="language-dropdown" role="menu" aria-labelledby="languageButton">
+                <div class="language-option" data-lang="ru" role="menuitem" tabindex="0">
                     <span class="language-flag">🇷🇺</span>
                     <span class="language-text">Русский</span>
+                    <span class="language-code">RU</span>
                 </div>
-                <div class="language-option" data-lang="en">
+                <div class="language-option" data-lang="en" role="menuitem" tabindex="0">
                     <span class="language-flag">🇺🇸</span>
                     <span class="language-text">English</span>
+                    <span class="language-code">EN</span>
                 </div>
-                <div class="language-option" data-lang="kz">
+                <div class="language-option" data-lang="kz" role="menuitem" tabindex="0">
                     <span class="language-flag">🇰🇿</span>
                     <span class="language-text">Қазақша</span>
+                    <span class="language-code">KZ</span>
                 </div>
-                <div class="language-option" data-lang="cn">
+                <div class="language-option" data-lang="cn" role="menuitem" tabindex="0">
                     <span class="language-flag">🇨🇳</span>
                     <span class="language-text">中文</span>
+                    <span class="language-code">CN</span>
                 </div>
             </div>
         </div>
 
         <div class="search-container">
             <div class="search" id="searchButton">
-                <button class="search-button">
-                    <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <button class="search-button" aria-label="Поиск">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" role="img" aria-label="Иконка поиска">
                         <path d="M7.89062 0.00976562C11.8554 0.210867 15.0086 3.48918 15.0088 7.50391L14.999 7.89062C14.9198 9.45317 14.3598 10.8876 13.4678 12.0547L17.6348 16.2217L17.7031 16.2969C18.0237 16.6897 18.001 17.2695 17.6348 17.6357C17.2686 18.0019 16.6887 18.0247 16.2959 17.7041L16.2207 17.6357L12.0547 13.4697C10.792 14.4343 9.21538 15.0088 7.50391 15.0088L7.11816 14.999C3.28108 14.8046 0.204387 11.7277 0.00976562 7.89062L0 7.50391C0.00016827 3.35969 3.35969 0.000168274 7.50391 0L7.89062 0.00976562ZM7.50391 2C4.46426 2.00017 2.00017 4.46426 2 7.50391C2 10.5437 4.46415 13.0086 7.50391 13.0088C10.5438 13.0088 13.0088 10.5438 13.0088 7.50391C13.0086 4.46415 10.5437 2 7.50391 2Z" fill="#0F0F0F"/>
                     </svg>
                 </button>
             </div>
 
-            <div class="search-expanded" id="searchExpanded">
+            <div class="search-expanded" id="searchExpanded" aria-hidden="true">
                 <div class="search-input-container">
-                    <svg class="search-input-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <svg class="search-input-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" role="img" aria-label="Поиск">
                         <path d="M7.89062 0.00976562C11.8554 0.210867 15.0086 3.48918 15.0088 7.50391L14.999 7.89062C14.9198 9.45317 14.3598 10.8876 13.4678 12.0547L17.6348 16.2217L17.7031 16.2969C18.0237 16.6897 18.001 17.2695 17.6348 17.6357C17.2686 18.0019 16.6887 18.0247 16.2959 17.7041L16.2207 17.6357L12.0547 13.4697C10.792 14.4343 9.21538 15.0088 7.50391 15.0088L7.11816 14.999C3.28108 14.8046 0.204387 11.7277 0.00976562 7.89062L0 7.50391C0.00016827 3.35969 3.35969 0.000168274 7.50391 0L7.89062 0.00976562ZM7.50391 2C4.46426 2.00017 2.00017 4.46426 2 7.50391C2 10.5437 4.46415 13.0086 7.50391 13.0088C10.5438 13.0088 13.0088 10.5438 13.0088 7.50391C13.0086 4.46415 10.5437 2 7.50391 2Z" fill="#666"/>
                     </svg>
-                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск суши, роллов..." autocomplete="off">
-                    <button class="search-close" id="searchClose">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск суши, роллов..." autocomplete="off" aria-label="Поле поиска">
+                    <button class="search-close" id="searchClose" aria-label="Закрыть поиск">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                             <path d="M18 6L6 18M6 6l12 12" stroke="#666" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </button>
                 </div>
-                <div class="search-suggestions" id="searchSuggestions">
-                    <div class="suggestion-item">Филадельфия</div>
-                    <div class="suggestion-item">Калифорния</div>
-                    <div class="suggestion-item">Унаги</div>
-                    <div class="suggestion-item">Темпура</div>
-                    <div class="suggestion-item">Сашими</div>
+                <div class="search-suggestions" role="listbox" aria-label="Результаты поиска">
+                    <div class="suggestion-item" role="option" tabindex="0">Филадельфия</div>
+                    <div class="suggestion-item" role="option" tabindex="0">Калифорния</div>
+                    <div class="suggestion-item" role="option" tabindex="0">Унаги</div>
+                    <div class="suggestion-item" role="option" tabindex="0">Темпура</div>
+                    <div class="suggestion-item" role="option" tabindex="0">Сашими</div>
                 </div>
             </div>
         </div>
@@ -83,8 +88,8 @@
     <div class="floating-icons-right">
         <div class="cart-container">
             <div class="cart">
-                <button class="cart-button">
-                    <svg width="20" height="20" viewBox="0 0 23 21" fill="none">
+                <button class="cart-button" aria-label="Корзина покупок">
+                    <svg width="20" height="20" viewBox="0 0 23 21" fill="none" role="img" aria-label="Иконка корзины">
                         <path d="M20.8333 8.125L19.1002 16.9452C18.8864 18.0334 18.7795 18.5775 18.5004 18.9844C18.2543 19.3433 17.9155 19.626 17.5215 19.8012C17.0747 20 16.5296 20 15.4394 20H7.5606C6.47038 20 5.92527 20 5.47847 19.8012C5.08446 19.626 4.7457 19.3433 4.49958 18.9844C4.22048 18.5775 4.11358 18.0334 3.89977 16.9452L2.16667 8.125M1 8.125H22M6.83333 11.6875V11.6994M16.1667 11.6875V11.6994M4.5 8.125L8 1M18.5 8.125L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                     <span class="cart-amount" id="cartAmount">0 ₸</span>
@@ -103,10 +108,10 @@
         </div>
     </div>
 
-    <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel" id="cartPanel" aria-hidden="true" aria-label="Корзина покупок">
         <div class="cart-header">
             <h2 class="cart-title">Мой заказ</h2>
-            <button class="cart-close" id="cartClose">
+            <button class="cart-close" id="cartClose" aria-label="Закрыть корзину">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -114,7 +119,7 @@
         </div>
         <div class="cart-content">
             <div class="cart-empty">
-                <svg width="23" height="21" viewBox="0 0 23 21" fill="none">
+                <svg width="23" height="21" viewBox="0 0 23 21" fill="none" aria-hidden="true">
                     <path d="M20.8333 8.125L19.1002 16.9452C18.8864 18.0334 18.7795 18.5775 18.5004 18.9844C18.2543 19.3433 17.9155 19.626 17.5215 19.8012C17.0747 20 16.5296 20 15.4394 20H7.5606C6.47038 20 5.92527 20 5.47847 19.8012C5.08446 19.626 4.7457 19.3433 4.49958 18.9844C4.22048 18.5775 4.11358 18.0334 3.89977 16.9452L2.16667 8.125M1 8.125H22M6.83333 11.6875V11.6994M16.1667 11.6875V11.6994M4.5 8.125L8 1M18.5 8.125L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
                 <p>Ваша корзина пуста</p>
@@ -128,9 +133,9 @@
         <div class="hero-background">
             <div class="hero-container">
                 <div class="hero-content">
-                    <h1>Суши-бар "Сакура"</h1>
+                    <h2>Суши-бар "Сакура"</h2>
                     <p>Лучшие суши и роллы в городе</p>
-                    <button class="order-button">Сделать заказ</button>
+                    <button class="order-button" id="orderButton">Сделать заказ</button>
                 </div>
             </div>
         </div>
