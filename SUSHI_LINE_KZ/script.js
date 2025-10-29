@@ -1,22 +1,19 @@
 class SushiApp {
     constructor() {
-        this.cartResizeHandler = null;
+        this.cartResizeHandler = this.updateCartPanelPosition.bind(this);
         this.init();
-
-        // Добавляем обработчик ресайза для обновления позиции корзины
-        window.addEventListener('resize', () => {
-            if (document.body.classList.contains('cart-open')) {
-                this.updateCartPanelPosition();
-            }
-        });
     }
 
     init() {
-        this.initHeaderBehavior();
-        this.initLanguageSelector();
-        this.initSearch();
-        this.initCart();
-        this.animateCartAmount();
+        try {
+            this.initHeaderBehavior();
+            this.initLanguageSelector();
+            this.initSearch();
+            this.initCart();
+            this.animateCartAmount();
+        } catch (error) {
+            console.error('SushiApp initialization failed:', error);
+        }
     }
 
     initHeaderBehavior() {
@@ -25,13 +22,13 @@ class SushiApp {
         const headerWrapper = document.querySelector('.header-wrapper');
         const floatingIcons = document.querySelector('.floating-icons');
 
+        if (!header || !headerContainer || !headerWrapper || !floatingIcons) return;
+
         const updateHeader = () => {
             const scrollY = window.scrollY;
             const windowWidth = window.innerWidth;
 
-            // Если корзина открыта, обновляем только позицию корзины
             if (document.body.classList.contains('cart-open')) {
-                this.updateCartPanelPosition();
                 return;
             }
 
@@ -52,11 +49,6 @@ class SushiApp {
             if (floatingIcons) {
                 floatingIcons.classList.toggle('scrolled', scrollY > 200);
             }
-
-            // Обновляем позицию корзины при скролле, если она открыта
-            if (document.body.classList.contains('cart-open')) {
-                this.updateCartPanelPosition();
-            }
         };
 
         window.addEventListener('scroll', updateHeader);
@@ -68,6 +60,8 @@ class SushiApp {
         setTimeout(() => {
             const cartAmount = document.getElementById('cartAmount');
             const cart = document.querySelector('.cart');
+
+            if (!cartAmount || !cart) return;
 
             cartAmount.classList.add('amount-increasing');
             cart.classList.add('cart-pulse');
@@ -104,6 +98,8 @@ class SushiApp {
         const languageSelector = document.querySelector('.language-selector');
         const languageOptions = document.querySelectorAll('.language-option');
 
+        if (!languageButton || !languageSelector || languageOptions.length === 0) return;
+
         languageOptions[0].classList.add('active');
 
         languageButton.addEventListener('click', (e) => {
@@ -113,18 +109,29 @@ class SushiApp {
 
         languageOptions.forEach(option => {
             option.addEventListener('click', () => {
-                const langCode = option.querySelector('.language-code').textContent;
+                const langCodeElement = option.querySelector('.language-code');
                 const textElement = languageButton.querySelector('text');
 
-                textElement.textContent = langCode;
-                languageOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                languageSelector.classList.remove('active');
+                if (langCodeElement && textElement) {
+                    const langCode = langCodeElement.textContent;
+                    textElement.textContent = langCode;
+
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    languageSelector.classList.remove('active');
+                }
             });
         });
 
-        document.addEventListener('click', () => languageSelector.classList.remove('active'));
-        document.addEventListener('keydown', (e) => e.key === 'Escape' && languageSelector.classList.remove('active'));
+        document.addEventListener('click', () => {
+            languageSelector.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                languageSelector.classList.remove('active');
+            }
+        });
     }
 
     initSearch() {
@@ -135,6 +142,8 @@ class SushiApp {
         const searchContainer = document.querySelector('.search-container');
         const suggestionItems = document.querySelectorAll('.suggestion-item');
 
+        if (!searchButton || !searchExpanded || !searchInput || !searchClose || !searchContainer) return;
+
         searchButton.addEventListener('click', () => {
             searchExpanded.classList.add('active');
             setTimeout(() => searchInput.focus(), 100);
@@ -143,10 +152,16 @@ class SushiApp {
         searchClose.addEventListener('click', () => this.closeSearch());
 
         document.addEventListener('click', (e) => {
-            if (!searchContainer.contains(e.target)) this.closeSearch();
+            if (!searchContainer.contains(e.target)) {
+                this.closeSearch();
+            }
         });
 
-        document.addEventListener('keydown', (e) => e.key === 'Escape' && this.closeSearch());
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeSearch();
+            }
+        });
 
         searchInput.addEventListener('input', (e) => {
             searchContainer.classList.toggle('search-pulse', e.target.value.length > 0);
@@ -161,7 +176,9 @@ class SushiApp {
         });
 
         searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') this.performSearch(searchInput.value);
+            if (e.key === 'Enter') {
+                this.performSearch(searchInput.value);
+            }
         });
     }
 
@@ -170,9 +187,9 @@ class SushiApp {
         const searchInput = document.getElementById('searchInput');
         const searchContainer = document.querySelector('.search-container');
 
-        searchExpanded.classList.remove('active');
-        searchInput.value = '';
-        searchContainer.classList.remove('search-pulse');
+        if (searchExpanded) searchExpanded.classList.remove('active');
+        if (searchInput) searchInput.value = '';
+        if (searchContainer) searchContainer.classList.remove('search-pulse');
     }
 
     performSearch(query) {
@@ -186,8 +203,8 @@ class SushiApp {
         const cartButton = document.querySelector('.cart-button');
         const cartClose = document.getElementById('cartClose');
         const cartPanel = document.getElementById('cartPanel');
-        const contentSections = document.querySelector('.content-sections');
-        const heroContainer = document.querySelector('.hero-container');
+
+        if (!cartButton || !cartClose || !cartPanel) return;
 
         cartButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -217,7 +234,7 @@ class SushiApp {
 
     toggleCart() {
         const cartPanel = document.getElementById('cartPanel');
-        if (cartPanel.classList.contains('active')) {
+        if (cartPanel && cartPanel.classList.contains('active')) {
             this.closeCart();
         } else {
             this.openCart();
@@ -232,19 +249,21 @@ class SushiApp {
         const headerContainer = document.querySelector('.header-container');
         const headerWrapper = document.querySelector('.header-wrapper');
 
+        if (!cartPanel || !contentSections || !heroContainer || !body || !headerContainer || !headerWrapper) return;
+
+        // Сначала переводим шапку в узкое состояние
+        headerContainer.classList.remove('header-wide');
+        headerContainer.classList.add('header-narrow');
+        headerWrapper.classList.remove('header-wide');
+        headerWrapper.classList.add('header-narrow');
+
+        // Затем открываем корзину и обновляем позицию
         cartPanel.classList.add('active');
-        this.updateCartPanelPosition();
 
         if (window.innerWidth > 768) {
             contentSections.classList.add('shifted');
             heroContainer.classList.add('shifted');
             body.classList.add('cart-open');
-
-            // Добавляем класс для сужения шапки
-            headerContainer.classList.remove('header-wide');
-            headerContainer.classList.add('header-narrow');
-            headerWrapper.classList.remove('header-wide');
-            headerWrapper.classList.add('header-narrow');
 
             const floatingIcons = document.querySelector('.floating-icons');
             if (floatingIcons) {
@@ -253,7 +272,7 @@ class SushiApp {
             }
         }
 
-        this.cartResizeHandler = () => this.updateCartPanelPosition();
+        this.updateCartPanelPosition();
         window.addEventListener('resize', this.cartResizeHandler);
     }
 
@@ -265,16 +284,26 @@ class SushiApp {
         const headerContainer = document.querySelector('.header-container');
         const headerWrapper = document.querySelector('.header-wrapper');
 
+        if (!cartPanel || !contentSections || !heroContainer || !body || !headerContainer || !headerWrapper) return;
+
         cartPanel.classList.remove('active');
         contentSections.classList.remove('shifted');
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        // Возвращаем шапку к исходному состоянию
-        headerContainer.classList.remove('header-narrow');
-        headerContainer.classList.add('header-wide');
-        headerWrapper.classList.remove('header-narrow');
-        headerWrapper.classList.add('header-wide');
+        // Возвращаем шапку в исходное состояние
+        const scrollY = window.scrollY;
+        if (window.innerWidth >= 1350) {
+            headerContainer.classList.toggle('header-narrow', scrollY <= 200);
+            headerContainer.classList.toggle('header-wide', scrollY > 200);
+            headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
+            headerWrapper.classList.toggle('header-wide', scrollY > 200);
+        } else {
+            headerContainer.classList.add('header-narrow');
+            headerContainer.classList.remove('header-wide');
+            headerWrapper.classList.add('header-narrow');
+            headerWrapper.classList.remove('header-wide');
+        }
 
         const floatingIcons = document.querySelector('.floating-icons');
         if (floatingIcons) {
@@ -282,39 +311,32 @@ class SushiApp {
             this.updateFloatingIconsPosition();
         }
 
-        if (this.cartResizeHandler) {
-            window.removeEventListener('resize', this.cartResizeHandler);
-            this.cartResizeHandler = null;
-        }
-
+        window.removeEventListener('resize', this.cartResizeHandler);
         cartPanel.style.right = '';
 
-        // Вызываем обновление заголовка для восстановления правильного состояния
-        this.updateHeader();
+        this.updateHeaderState();
     }
 
     updateCartPanelPosition() {
         const cartPanel = document.getElementById('cartPanel');
-
         if (!cartPanel) return;
 
-        // Для мобильных устройств оставляем стандартное позиционирование
         if (window.innerWidth <= 1200) {
             cartPanel.style.right = '20px';
             return;
         }
 
-        // На десктопе корзина появляется справа с отступом, соответствующим иконкам
-        cartPanel.style.right = 'calc((100vw - 1300px) / 2 + 100px)';
+        // Всегда используем расчет для узкой шапки (1140px) при открытой корзине
+        cartPanel.style.right = 'calc((100vw - 1140px) / 2 - 375px)';
     }
 
-    updateHeader() {
+    updateHeaderState() {
         const header = document.querySelector('.header');
         const headerContainer = document.querySelector('.header-container');
         const headerWrapper = document.querySelector('.header-wrapper');
         const floatingIcons = document.querySelector('.floating-icons');
 
-        if (!headerContainer || document.body.classList.contains('cart-open')) return;
+        if (!header || !headerContainer || !headerWrapper || document.body.classList.contains('cart-open')) return;
 
         const scrollY = window.scrollY;
         const windowWidth = window.innerWidth;
@@ -348,4 +370,6 @@ class SushiApp {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => new SushiApp());
+document.addEventListener('DOMContentLoaded', () => {
+    new SushiApp();
+});
