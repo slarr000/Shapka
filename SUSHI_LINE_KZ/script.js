@@ -258,7 +258,8 @@ class SushiApp {
 
         cartPanel.classList.add('active');
 
-        if (window.innerWidth > 768) {
+        // Сдвигаем контент только на достаточно широких экранах
+        if (window.innerWidth > 1100) {
             contentSections.classList.add('shifted');
             heroContainer.classList.add('shifted');
             body.classList.add('cart-open');
@@ -318,8 +319,14 @@ class SushiApp {
         const cartPanel = document.getElementById('cartPanel');
         if (!cartPanel) return;
 
-        if (window.innerWidth <= 1200) {
+        if (window.innerWidth <= 1280) {
             cartPanel.style.right = '20px';
+            return;
+        }
+
+        if (window.innerWidth <= 1440) {
+            const calculatedRight = (window.innerWidth - 1140) / 2 - 375;
+            cartPanel.style.right = `max(20px, ${calculatedRight}px)`;
             return;
         }
 
