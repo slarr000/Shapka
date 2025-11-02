@@ -18,37 +18,19 @@ class SushiApp {
 
     initHeaderBehavior() {
         const header = document.querySelector('.header');
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
         const floatingIcons = document.querySelector('.floating-icons');
 
-        if (!header || !headerContainer || !headerWrapper || !floatingIcons) return;
+        if (!header || !floatingIcons) return;
 
         const updateHeader = () => {
             const scrollY = window.scrollY;
-            const windowWidth = window.innerWidth;
 
             if (document.body.classList.contains('cart-open')) {
                 return;
             }
 
-            if (windowWidth >= 1350) {
-                headerContainer.classList.toggle('header-narrow', scrollY <= 200);
-                headerContainer.classList.toggle('header-wide', scrollY > 200);
-                headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
-                headerWrapper.classList.toggle('header-wide', scrollY > 200);
-            } else {
-                headerContainer.classList.add('header-narrow');
-                headerContainer.classList.remove('header-wide');
-                headerWrapper.classList.add('header-narrow');
-                headerWrapper.classList.remove('header-wide');
-            }
-
-            header.classList.toggle('scrolled', scrollY > 50);
-
-            if (floatingIcons) {
-                floatingIcons.classList.toggle('scrolled', scrollY > 200);
-            }
+            header.classList.toggle('scrolled', scrollY > 200);
+            floatingIcons.classList.toggle('scrolled', scrollY > 200);
         };
 
         window.addEventListener('scroll', updateHeader);
@@ -246,31 +228,48 @@ class SushiApp {
         const contentSections = document.querySelector('.content-sections');
         const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
+        const header = document.querySelector('.header');
+        const floatingIcons = document.querySelector('.floating-icons');
 
-        if (!cartPanel || !contentSections || !heroContainer || !body || !headerContainer || !headerWrapper) return;
+        if (!cartPanel || !contentSections || !heroContainer || !body || !header || !floatingIcons) return;
 
-        headerContainer.classList.remove('header-wide');
-        headerContainer.classList.add('header-narrow');
-        headerWrapper.classList.remove('header-wide');
-        headerWrapper.classList.add('header-narrow');
-
-        cartPanel.classList.add('active');
-
-        // Сдвигаем контент только на достаточно широких экранах
-        if (window.innerWidth > 1100) {
+        if (window.innerWidth > 768) {
             contentSections.classList.add('shifted');
             heroContainer.classList.add('shifted');
             body.classList.add('cart-open');
+        }
 
-            const floatingIcons = document.querySelector('.floating-icons');
-            if (floatingIcons) {
-                floatingIcons.style.transform = 'none';
-                floatingIcons.classList.remove('scrolled');
+        if (window.innerWidth >= 1025 && window.innerWidth <= 1440) {
+            floatingIcons.classList.remove('scrolled');
+            header.classList.remove('scrolled');
+
+            const floatingIconsLeft = document.querySelector('.floating-icons-left');
+            const floatingIconsRight = document.querySelector('.floating-icons-right');
+
+            if (floatingIconsLeft) {
+                floatingIconsLeft.style.left = 'calc((100vw - 1140px) / 2)';
+            }
+            if (floatingIconsRight) {
+                floatingIconsRight.style.right = 'calc((100vw - 1140px) / 2)';
             }
         }
 
+        if (window.innerWidth > 1440) {
+            floatingIcons.classList.remove('scrolled');
+            header.classList.remove('scrolled');
+
+            const floatingIconsLeft = document.querySelector('.floating-icons-left');
+            const floatingIconsRight = document.querySelector('.floating-icons-right');
+
+            if (floatingIconsLeft) {
+                floatingIconsLeft.style.left = 'calc((100vw - 1140px) / 2)';
+            }
+            if (floatingIconsRight) {
+                floatingIconsRight.style.right = 'calc((100vw - 1140px) / 2)';
+            }
+        }
+
+        cartPanel.classList.add('active');
         this.updateCartPanelPosition();
         window.addEventListener('resize', this.cartResizeHandler);
     }
@@ -280,96 +279,56 @@ class SushiApp {
         const contentSections = document.querySelector('.content-sections');
         const heroContainer = document.querySelector('.hero-container');
         const body = document.body;
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
 
-        if (!cartPanel || !contentSections || !heroContainer || !body || !headerContainer || !headerWrapper) return;
+        if (!cartPanel || !contentSections || !heroContainer || !body) return;
 
         cartPanel.classList.remove('active');
         contentSections.classList.remove('shifted');
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        const scrollY = window.scrollY;
-        if (window.innerWidth >= 1350) {
-            headerContainer.classList.toggle('header-narrow', scrollY <= 200);
-            headerContainer.classList.toggle('header-wide', scrollY > 200);
-            headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
-            headerWrapper.classList.toggle('header-wide', scrollY > 200);
-        } else {
-            headerContainer.classList.add('header-narrow');
-            headerContainer.classList.remove('header-wide');
-            headerWrapper.classList.add('header-narrow');
-            headerWrapper.classList.remove('header-wide');
-        }
+        const floatingIconsLeft = document.querySelector('.floating-icons-left');
+        const floatingIconsRight = document.querySelector('.floating-icons-right');
 
-        const floatingIcons = document.querySelector('.floating-icons');
-        if (floatingIcons) {
-            floatingIcons.style.transform = '';
-            this.updateFloatingIconsPosition();
-        }
+        if (floatingIconsLeft) floatingIconsLeft.style.left = '';
+        if (floatingIconsRight) floatingIconsRight.style.right = '';
+
+        this.updateHeaderState();
 
         window.removeEventListener('resize', this.cartResizeHandler);
         cartPanel.style.right = '';
-
-        this.updateHeaderState();
     }
 
     updateCartPanelPosition() {
         const cartPanel = document.getElementById('cartPanel');
         if (!cartPanel) return;
 
-        if (window.innerWidth <= 1280) {
-            cartPanel.style.right = '20px';
+        if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 480) {
+                cartPanel.style.right = '10px';
+            } else {
+                cartPanel.style.right = '15px';
+            }
             return;
         }
 
         if (window.innerWidth <= 1440) {
-            const calculatedRight = (window.innerWidth - 1140) / 2 - 375;
-            cartPanel.style.right = `max(20px, ${calculatedRight}px)`;
+            cartPanel.style.right = '20px';
             return;
         }
 
-        cartPanel.style.right = 'calc((100vw - 1140px) / 2 - 375px)';
+        cartPanel.style.right = '';
     }
 
     updateHeaderState() {
         const header = document.querySelector('.header');
-        const headerContainer = document.querySelector('.header-container');
-        const headerWrapper = document.querySelector('.header-wrapper');
-        const floatingIcons = document.querySelector('.floating-icons');
-
-        if (!header || !headerContainer || !headerWrapper || document.body.classList.contains('cart-open')) return;
-
-        const scrollY = window.scrollY;
-        const windowWidth = window.innerWidth;
-
-        if (windowWidth >= 1350) {
-            headerContainer.classList.toggle('header-narrow', scrollY <= 200);
-            headerContainer.classList.toggle('header-wide', scrollY > 200);
-            headerWrapper.classList.toggle('header-narrow', scrollY <= 200);
-            headerWrapper.classList.toggle('header-wide', scrollY > 200);
-        } else {
-            headerContainer.classList.add('header-narrow');
-            headerContainer.classList.remove('header-wide');
-            headerWrapper.classList.add('header-narrow');
-            headerWrapper.classList.remove('header-wide');
-        }
-
-        header.classList.toggle('scrolled', scrollY > 50);
-
-        if (floatingIcons) {
-            floatingIcons.classList.toggle('scrolled', scrollY > 200);
-        }
-    }
-
-    updateFloatingIconsPosition() {
         const floatingIcons = document.querySelector('.floating-icons');
         const scrollY = window.scrollY;
 
-        if (floatingIcons) {
-            floatingIcons.classList.toggle('scrolled', scrollY > 200);
-        }
+        if (!header || !floatingIcons || document.body.classList.contains('cart-open')) return;
+
+        header.classList.toggle('scrolled', scrollY > 200);
+        floatingIcons.classList.toggle('scrolled', scrollY > 200);
     }
 }
 
