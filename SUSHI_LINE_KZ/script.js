@@ -25,6 +25,13 @@ class SushiApp {
         const updateHeader = () => {
             const scrollY = window.scrollY;
 
+
+            if (window.innerWidth <= 1024) {
+                header.classList.remove('scrolled');
+                floatingIcons.classList.remove('scrolled');
+                return;
+            }
+
             if (document.body.classList.contains('cart-open')) {
                 return;
             }
@@ -233,11 +240,26 @@ class SushiApp {
 
         if (!cartPanel || !contentSections || !heroContainer || !body || !header || !floatingIcons) return;
 
-        if (window.innerWidth > 768) {
-            contentSections.classList.add('shifted');
-            heroContainer.classList.add('shifted');
-            body.classList.add('cart-open');
+
+        contentSections.classList.add('shifted');
+        heroContainer.classList.add('shifted');
+        body.classList.add('cart-open');
+
+        if (window.innerWidth <= 1024) {
+            floatingIcons.classList.remove('scrolled');
+            header.classList.remove('scrolled');
+
+            const floatingIconsLeft = document.querySelector('.floating-icons-left');
+            const floatingIconsRight = document.querySelector('.floating-icons-right');
+
+            if (floatingIconsLeft) {
+                floatingIconsLeft.style.left = '20px';
+            }
+            if (floatingIconsRight) {
+                floatingIconsRight.style.right = '20px';
+            }
         }
+
 
         if (window.innerWidth >= 1025 && window.innerWidth <= 1440) {
             floatingIcons.classList.remove('scrolled');
@@ -247,25 +269,10 @@ class SushiApp {
             const floatingIconsRight = document.querySelector('.floating-icons-right');
 
             if (floatingIconsLeft) {
-                floatingIconsLeft.style.left = 'calc((100vw - 1140px) / 2)';
+                floatingIconsLeft.style.left = `calc((100vw - 1140px) / 2)`;
             }
             if (floatingIconsRight) {
-                floatingIconsRight.style.right = 'calc((100vw - 1140px) / 2)';
-            }
-        }
-
-        if (window.innerWidth > 1440) {
-            floatingIcons.classList.remove('scrolled');
-            header.classList.remove('scrolled');
-
-            const floatingIconsLeft = document.querySelector('.floating-icons-left');
-            const floatingIconsRight = document.querySelector('.floating-icons-right');
-
-            if (floatingIconsLeft) {
-                floatingIconsLeft.style.left = 'calc((100vw - 1140px) / 2)';
-            }
-            if (floatingIconsRight) {
-                floatingIconsRight.style.right = 'calc((100vw - 1140px) / 2)';
+                floatingIconsRight.style.right = `calc((100vw - 1140px) / 2)`;
             }
         }
 
@@ -287,11 +294,13 @@ class SushiApp {
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        const floatingIconsLeft = document.querySelector('.floating-icons-left');
-        const floatingIconsRight = document.querySelector('.floating-icons-right');
+        if (window.innerWidth <= 1440) {
+            const floatingIconsLeft = document.querySelector('.floating-icons-left');
+            const floatingIconsRight = document.querySelector('.floating-icons-right');
 
-        if (floatingIconsLeft) floatingIconsLeft.style.left = '';
-        if (floatingIconsRight) floatingIconsRight.style.right = '';
+            if (floatingIconsLeft) floatingIconsLeft.style.left = '';
+            if (floatingIconsRight) floatingIconsRight.style.right = '';
+        }
 
         this.updateHeaderState();
 
@@ -303,12 +312,9 @@ class SushiApp {
         const cartPanel = document.getElementById('cartPanel');
         if (!cartPanel) return;
 
-        if (window.innerWidth <= 768) {
-            if (window.innerWidth <= 480) {
-                cartPanel.style.right = '10px';
-            } else {
-                cartPanel.style.right = '15px';
-            }
+        // На экранах до 1024px фиксируем позицию корзины
+        if (window.innerWidth <= 1024) {
+            cartPanel.style.right = '20px';
             return;
         }
 
@@ -324,6 +330,13 @@ class SushiApp {
         const header = document.querySelector('.header');
         const floatingIcons = document.querySelector('.floating-icons');
         const scrollY = window.scrollY;
+
+
+        if (window.innerWidth <= 1024) {
+            header.classList.remove('scrolled');
+            floatingIcons.classList.remove('scrolled');
+            return;
+        }
 
         if (!header || !floatingIcons || document.body.classList.contains('cart-open')) return;
 
