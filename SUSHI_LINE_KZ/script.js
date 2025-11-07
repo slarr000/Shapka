@@ -25,11 +25,11 @@ class SushiApp {
         const updateHeader = () => {
             const scrollY = window.scrollY;
 
-
+            // НА ЭКРАНАХ МЕНЬШЕ 1024px ПОЛНОСТЬЮ ОТКЛЮЧАЕМ ЭФФЕКТЫ СКРОЛЛА
             if (window.innerWidth <= 1024) {
                 header.classList.remove('scrolled');
                 floatingIcons.classList.remove('scrolled');
-                return;
+                return; // Выходим из функции раньше
             }
 
             if (document.body.classList.contains('cart-open')) {
@@ -240,11 +240,12 @@ class SushiApp {
 
         if (!cartPanel || !contentSections || !heroContainer || !body || !header || !floatingIcons) return;
 
-
+        // На всех экранах включаем сдвиг контента
         contentSections.classList.add('shifted');
         heroContainer.classList.add('shifted');
         body.classList.add('cart-open');
 
+        // На экранах меньше 1024px полностью отключаем движение иконок и корректируем позиционирование
         if (window.innerWidth <= 1024) {
             floatingIcons.classList.remove('scrolled');
             header.classList.remove('scrolled');
@@ -260,7 +261,7 @@ class SushiApp {
             }
         }
 
-
+        // На экранах 1025px-1440px корректируем позиционирование
         if (window.innerWidth >= 1025 && window.innerWidth <= 1440) {
             floatingIcons.classList.remove('scrolled');
             header.classList.remove('scrolled');
@@ -294,6 +295,7 @@ class SushiApp {
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
+        // Сбрасываем инлайн-стили на экранах до 1440px
         if (window.innerWidth <= 1440) {
             const floatingIconsLeft = document.querySelector('.floating-icons-left');
             const floatingIconsRight = document.querySelector('.floating-icons-right');
@@ -331,7 +333,7 @@ class SushiApp {
         const floatingIcons = document.querySelector('.floating-icons');
         const scrollY = window.scrollY;
 
-
+        // На экранах меньше 1025px отключаем эффекты скролла
         if (window.innerWidth <= 1024) {
             header.classList.remove('scrolled');
             floatingIcons.classList.remove('scrolled');
