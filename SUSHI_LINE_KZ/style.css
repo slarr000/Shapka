@@ -815,7 +815,7 @@ p {
 
 /* ===== МЕДИА-ЗАПРОСЫ ===== */
 
-
+/* Десктопы меньше 1024px - сохраняем десктопный вид с горизонтальным скроллом */
 @media (max-width: 1024px) {
     body {
         min-width: 1140px;
@@ -860,13 +860,13 @@ p {
         transform: none;
     }
 
-
+    /* Корзина - позиционируем аналогично десктопной версии */
     .cart-panel.active {
         right: calc((100vw - 1140px) / 2) !important;
         width: 375px;
     }
 
-
+    /* Сдвиг контента при открытой корзине */
     .hero-container.shifted {
         margin-left: calc((100vw - 1140px) / 2) !important;
         max-width: calc(1140px - 400px) !important;
@@ -916,7 +916,7 @@ p {
         min-width: 1140px;
     }
 
-
+    /* Корректируем позиционирование плавающих иконок при открытой корзине */
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1140px) / 2) !important;
     }
@@ -926,7 +926,7 @@ p {
     }
 }
 
-
+/* Планшеты и маленькие экраны - также сохраняем десктопный вид */
 @media (max-width: 768px) {
     body {
         min-width: 1140px;
@@ -947,7 +947,7 @@ p {
     }
 }
 
-
+/* Мобильные устройства - также сохраняем десктопный вид */
 @media (max-width: 480px) {
     body {
         min-width: 1140px;
@@ -1067,6 +1067,7 @@ p {
     }
 }
 
+/* Очень большие экраны 2560px+ - отключение сдвига контента */
 @media (min-width: 2560px) {
     .hero-container.shifted {
         margin-left: auto !important;
@@ -1088,6 +1089,7 @@ p {
         right: calc((100vw - 1300px) / 2 - 375px - 20px) !important;
     }
 
+    /* Отключаем все трансформации для контента */
     .hero-container.shifted .hero h2,
     .hero-container.shifted .hero p,
     .content-sections.shifted .menu-grid,
@@ -1101,7 +1103,7 @@ p {
         gap: inherit !important;
     }
 
-
+    /* Корректируем позиционирование плавающих иконок */
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1300px) / 2) !important;
     }
@@ -1113,7 +1115,7 @@ p {
 
 
 
-
+/* Стили для экранов 1441px - 2559px при открытой корзине */
 @media (min-width: 1441px) and (max-width: 2559px) {
     body.cart-open .hero-container.shifted,
     body.cart-open .content-sections.shifted {
@@ -1130,6 +1132,7 @@ p {
         right: calc((100vw - 1140px) / 2) !important;
     }
 
+    /* Корректируем позиционирование плавающих иконок */
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1140px) / 2) !important;
     }
@@ -1138,7 +1141,7 @@ p {
         right: calc((100vw - 1140px) / 2) !important;
     }
 }
-
+/* Экран 1440px - исправление отступов при открытой корзине */
 @media (min-width: 1025px) and (max-width: 1440px) {
     .hero-container.shifted,
     .content-sections.shifted {
@@ -1154,7 +1157,7 @@ p {
         width: 375px;
     }
 
-
+    /* Корректируем позиционирование плавающих иконок при открытой корзине */
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1140px) / 2);
     }
