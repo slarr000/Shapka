@@ -982,7 +982,7 @@ p {
 /* Очень большие экраны */
 @media (min-width: 1441px) {
     .header-container {
-        width: 1300px;
+        width: 1140px;
         max-width: 1300px;
     }
 
@@ -1093,7 +1093,7 @@ p {
         right: calc((100vw - 1300px) / 2 - 375px - 20px) !important;
     }
 
- 
+    /* Отключаем все трансформации для контента */
     .hero-container.shifted .hero h2,
     .hero-container.shifted .hero p,
     .content-sections.shifted .menu-grid,
@@ -1107,7 +1107,7 @@ p {
         gap: inherit !important;
     }
 
-
+    /* Корректируем позиционирование плавающих иконок */
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1300px) / 2) !important;
     }
@@ -1122,5 +1122,32 @@ p {
     body {
         min-width: auto;
         overflow-x: hidden;
+    }
+}
+
+/* Стили для экранов 1441px - 2559px при открытой корзине */
+@media (min-width: 1441px) and (max-width: 2559px) {
+    body.cart-open .hero-container.shifted,
+    body.cart-open .content-sections.shifted {
+        margin-left: calc((100vw - 1140px) / 2) !important;
+        margin-right: 0 !important;
+        max-width: calc(1140px - 400px) !important;
+        width: calc(1140px - 400px) !important;
+        transform: scale(1) !important;
+        transform-origin: left top;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
+
+    body.cart-open .cart-panel.active {
+        right: calc((100vw - 1140px) / 2) !important;
+    }
+
+    /* Корректируем позиционирование плавающих иконок */
+    body.cart-open .floating-icons-left {
+        left: calc((100vw - 1140px) / 2) !important;
+    }
+
+    body.cart-open .floating-icons-right {
+        right: calc((100vw - 1140px) / 2) !important;
     }
 }
