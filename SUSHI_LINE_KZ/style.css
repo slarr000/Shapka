@@ -748,21 +748,46 @@ p {
 
 /* ===== АНИМАЦИИ ===== */
 @keyframes searchPulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
-    70% { box-shadow: 0 0 0 6px rgba(0, 123, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
 }
 
 @keyframes amountIncrease {
-    0% { transform: scale(1); color: #333; }
-    50% { transform: scale(1.1); color: #27ae60; font-weight: 700; }
-    100% { transform: scale(1); color: #333; }
+    0% {
+        transform: scale(1);
+        color: #333;
+    }
+    50% {
+        transform: scale(1.1);
+        color: #27ae60;
+        font-weight: 700;
+    }
+    100% {
+        transform: scale(1);
+        color: #333;
+    }
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); background: whitesmoke; }
-    50% { box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2); background: #f0fff4; }
-    100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); background: whitesmoke; }
+    0% {
+        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4);
+        background: whitesmoke;
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2);
+        background: #f0fff4;
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
+        background: whitesmoke;
+    }
 }
 
 @keyframes fadeInUp {
@@ -998,7 +1023,7 @@ p {
         margin-left: auto !important;
         max-width: 1300px !important;
         width: 1300px !important;
-        transform: scale(0.9);
+        transform: scale(0.9) !important;
         transition: none !important;
     }
 
@@ -1006,7 +1031,7 @@ p {
         margin-left: auto !important;
         max-width: 1300px !important;
         width: 1300px !important;
-        transform: scale(0.9);
+        transform: scale(0.9) !important;
         transition: none !important;
     }
 
@@ -1043,6 +1068,52 @@ p {
 
     body.cart-open .floating-icons-right {
         right: calc((100vw - 1300px) / 2);
+    }
+}
+
+/* Очень большие экраны 2560px+ - отключение сдвига контента */
+@media (min-width: 2560px) {
+    .hero-container.shifted {
+        margin-left: auto !important;
+        max-width: 1300px !important;
+        width: 1300px !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .content-sections.shifted {
+        margin-left: auto !important;
+        max-width: 1300px !important;
+        width: 1300px !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .cart-panel.active {
+        right: calc((100vw - 1300px) / 2 - 375px - 20px) !important;
+    }
+
+ 
+    .hero-container.shifted .hero h2,
+    .hero-container.shifted .hero p,
+    .content-sections.shifted .menu-grid,
+    .content-sections.shifted .menu-item,
+    .content-sections.shifted .menu-item h3,
+    .content-sections.shifted .price {
+        transform: none !important;
+        font-size: inherit !important;
+        margin: inherit !important;
+        padding: inherit !important;
+        gap: inherit !important;
+    }
+
+
+    body.cart-open .floating-icons-left {
+        left: calc((100vw - 1300px) / 2) !important;
+    }
+
+    body.cart-open .floating-icons-right {
+        right: calc((100vw - 1300px) / 2) !important;
     }
 }
 
