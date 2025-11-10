@@ -25,7 +25,7 @@ class SushiApp {
         const updateHeader = () => {
             const scrollY = window.scrollY;
 
-            // НА ЭКРАНАХ МЕНЬШЕ 1024px ПОЛНОСТЬЮ ОТКЛЮЧАЕМ ЭФФЕКТЫ СКРОЛЛА
+
             if (window.innerWidth <= 1024) {
                 header.classList.remove('scrolled');
                 floatingIcons.classList.remove('scrolled');
@@ -240,12 +240,20 @@ class SushiApp {
 
         if (!cartPanel || !contentSections || !heroContainer || !body || !header || !floatingIcons) return;
 
-        // На всех экранах включаем сдвиг контента
+
+        if (window.innerWidth >= 2560) {
+            body.classList.add('cart-open');
+            cartPanel.classList.add('active');
+            this.updateCartPanelPosition();
+            window.addEventListener('resize', this.cartResizeHandler);
+            return;
+        }
+
+
         contentSections.classList.add('shifted');
         heroContainer.classList.add('shifted');
         body.classList.add('cart-open');
 
-        // На экранах меньше 1024px полностью отключаем движение иконок и корректируем позиционирование
         if (window.innerWidth <= 1024) {
             floatingIcons.classList.remove('scrolled');
             header.classList.remove('scrolled');
@@ -295,14 +303,12 @@ class SushiApp {
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        // Сбрасываем инлайн-стили на экранах до 1440px
-        if (window.innerWidth <= 1440) {
-            const floatingIconsLeft = document.querySelector('.floating-icons-left');
-            const floatingIconsRight = document.querySelector('.floating-icons-right');
+        // Сбрасываем инлайн-стили на всех экранах
+        const floatingIconsLeft = document.querySelector('.floating-icons-left');
+        const floatingIconsRight = document.querySelector('.floating-icons-right');
 
-            if (floatingIconsLeft) floatingIconsLeft.style.left = '';
-            if (floatingIconsRight) floatingIconsRight.style.right = '';
-        }
+        if (floatingIconsLeft) floatingIconsLeft.style.left = '';
+        if (floatingIconsRight) floatingIconsRight.style.right = '';
 
         this.updateHeaderState();
 
@@ -314,14 +320,21 @@ class SushiApp {
         const cartPanel = document.getElementById('cartPanel');
         if (!cartPanel) return;
 
-        // На экранах до 1024px фиксируем позицию корзины
+
         if (window.innerWidth <= 1024) {
             cartPanel.style.right = '20px';
             return;
         }
 
+
         if (window.innerWidth <= 1440) {
             cartPanel.style.right = '20px';
+            return;
+        }
+
+
+        if (window.innerWidth >= 2560) {
+            cartPanel.style.right = '';
             return;
         }
 
