@@ -1,1193 +1,328 @@
-/* ===== БАЗОВЫЕ СТИЛИ ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
-.content {
-    margin-top: 85px;
-    min-height: calc(100vh - 200px);
-}
-
-.content-container,
-.footer-container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-section {
-    padding: 80px 0;
-}
-
-h1, h2, h3 {
-    color: #333;
-    margin-bottom: 20px;
-}
-
-p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-/* ===== ШАПКА ===== */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgb(255, 255, 255);
-    z-index: 1001;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 85px;
-}
-
-.header.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header-wrapper {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    margin: 0 auto;
-    position: relative;
-    width: 100%;
-}
-
-.header-container {
-    display: flex;
-    background: #ffffff;
-    height: 85px;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    width: 1140px;
-    max-width: 1140px;
-}
-
-/* ===== ПЛАВАЮЩИЕ ИКОНКИ ===== */
-.floating-icons {
-    position: fixed;
-    top: 15px;
-    left: 0;
-    right: 0;
-    z-index: 1002;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.floating-icons-left,
-.floating-icons-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    pointer-events: auto;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-}
-
-.floating-icons-left {
-    left: calc((100vw - 1140px) / 2);
-}
-
-.floating-icons-right {
-    right: calc((100vw - 1140px) / 2);
-}
-
-.floating-icons.scrolled .floating-icons-left {
-    left: 20px;
-}
-
-.floating-icons.scrolled .floating-icons-right {
-    right: 20px;
-}
-
-/* ===== КНОПКИ ИКОНОК ===== */
-.menu, .language-button-container, .search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 20%;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-}
-
-.menu-button, .language-button, .search-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border-radius: 20%;
-    padding: 0;
-    transition: all 0.3s ease;
-}
-
-.menu-button:hover,
-.language-button:hover,
-.search-button:hover {
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.floating-icons .menu,
-.floating-icons .language-button-container,
-.floating-icons .search,
-.floating-icons .cart {
-    background: rgb(255, 255, 255);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgb(255, 255, 255);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.floating-icons .menu:hover,
-.floating-icons .language-button-container:hover,
-.floating-icons .search:hover,
-.floating-icons .cart:hover {
-    background: #ffffff;
-    transform: scale(1.05);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* ===== ВЫБОР ЯЗЫКА ===== */
-.language-selector {
-    position: relative;
-    display: inline-block;
-}
-
-.language-button svg {
-    width: 40px;
-    height: 40px;
-}
-
-.language-button text {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.language-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 8px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    min-width: 180px;
-    padding: 8px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-
-.language-selector.active .language-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.language-option {
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    gap: 12px;
-    position: relative;
-}
-
-.language-option:hover {
-    background: #f8f9fa;
-}
-
-.language-option.active {
-    background: #e3f2fd;
-}
-
-.language-flag {
-    font-size: 18px;
-    width: 24px;
-    text-align: center;
-}
-
-.language-text {
-    flex: 1;
-    font-size: 14px;
-    color: #333;
-    font-weight: 500;
-}
-
-.language-code {
-    display: none;
-}
-
-/* ===== ПОИСК ===== */
-.search-container {
-    position: relative;
-}
-
-.search-expanded {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    padding: 8px;
-    min-width: 300px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px) scale(0.95);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 1000;
-}
-
-.search-expanded.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.search-input-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    background: #f8f9fa;
-    border-radius: 20px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.search-input-container:focus-within {
-    border-color: #e9ecef;
-    background: white;
-}
-
-.search-input-icon {
-    flex-shrink: 0;
-    opacity: 0.7;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-size: 14px;
-    color: #333;
-    font-family: inherit;
-}
-
-.search-input::placeholder {
-    color: #999;
-}
-
-.search-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-    opacity: 0.7;
-}
-
-.search-close:hover {
-    background: #e9ecef;
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.search-suggestions {
-    margin-top: 8px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.search-expanded.active .search-suggestions {
-    max-height: 200px;
-}
-
-.suggestion-item {
-    padding: 10px 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    font-size: 14px;
-    color: #333;
-}
-
-.suggestion-item:hover {
-    background: #f8f9fa;
-    color: #495057;
-}
-
-/* ===== КОРЗИНА ===== */
-.cart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 120px;
-    height: 50px;
-    border-radius: 12px;
-    padding: 0 15px;
-    transition: all 0.3s ease;
-    z-index: 999;
-}
-
-.cart-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border-radius: 12px;
-    padding: 0;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    transition: all 0.3s ease;
-}
-
-.cart-button:hover {
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.cart-amount {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    transition: all 0.8s ease;
-    white-space: nowrap;
-}
-
-.cart-panel {
-    position: fixed;
-    top: 85px;
-    right: -450px;
-    width: 375px;
-    height: calc(100vh - 165px);
-    max-height: calc(100vh - 165px);
-    background: white;
-    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-    z-index: 1003;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.cart-panel.active {
-    right: calc((100vw - 1140px) / 2 - 375px);
-}
-
-.cart-content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.cart-empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #999;
-    text-align: center;
-}
-
-.cart-empty svg {
-    margin-bottom: 16px;
-    color: #ddd;
-}
-
-.cart-empty p {
-    font-size: 16px;
-    margin: 0;
-}
-
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #f0f0f0;
-    background: white;
-    flex-shrink: 0;
-}
-
-.cart-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
-}
-
-.cart-close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    color: #666;
-    transition: all 0.2s ease;
-}
-
-.cart-close:hover {
-    background: #f5f5f5;
-    color: #333;
-}
-
-/* ===== ГЕРОЙ-СЕКЦИЯ ===== */
-.hero {
-    position: relative;
-    padding: 0;
-    height: 500px;
-    overflow: hidden;
-    background: white;
-}
-
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.hero-container {
-    position: relative;
-    z-index: 2;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-sizing: border-box;
-    transform-origin: left center;
-}
-
-.hero-container.shifted {
-    margin-left: calc((100vw - 1140px) / 2);
-    max-width: calc(1140px - 400px);
-    width: calc(1140px - 400px);
-    padding: 0;
-    box-sizing: border-box;
-    transform: scale(0.85);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    transition: inherit;
-    width: 100%;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
-.hero h2 {
-    color: #2c3e50;
-    font-size: 3.5rem;
-    margin-bottom: 25px;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-    padding: 0 20px;
-}
-
-.hero p {
-    color: #7f8c8d;
-    font-size: 1.4rem;
-    margin-bottom: 35px;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    font-weight: 400;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-    animation: fadeInUp 0.8s ease-out 0.4s both;
-    padding: 0 20px;
-}
-
-.hero-container.shifted .hero h2 {
-    font-size: 3rem;
-}
-
-.hero-container.shifted .hero p {
-    font-size: 1.2rem;
-}
-
-.order-button {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-    color: white;
-    border: none;
-    padding: 16px 35px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-    position: relative;
-    overflow: hidden;
-    animation: fadeInUp 0.8s ease-out 0.6s both;
-    margin-top: 10px;
-}
-
-.order-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.order-button:hover {
-    background: linear-gradient(135deg, #ff5252 0%, #e74c3c 100%);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-}
-
-.order-button:hover::before {
-    left: 100%;
-}
-
-.order-button:active {
-    transform: translateY(-1px) scale(1.02);
-}
-
-/* ===== СЕКЦИИ КОНТЕНТА ===== */
-.content-sections {
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0;
-    box-sizing: border-box;
-    transform-origin: left center;
-}
-
-.content-sections.shifted {
-    margin-left: calc((100vw - 1140px) / 2);
-    max-width: calc(1140px - 400px);
-    width: calc(1140px - 400px);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding: 0;
-    box-sizing: border-box;
-    transform: scale(0.85);
-}
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.content-sections.shifted .menu-grid {
-    gap: 25px;
-    margin-top: 35px;
-}
-
-.menu-item {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.content-sections.shifted .menu-item {
-    padding: 20px;
-}
-
-.menu-item h3 {
-    color: #333;
-    margin-bottom: 10px;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.content-sections.shifted .menu-item h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-}
-
-.price {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #ff6b6b;
-    display: block;
-    margin-top: 15px;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.content-sections.shifted .price {
-    font-size: 1.1rem;
-    margin-top: 12px;
-}
-
-/* ===== ФУТЕР ===== */
-.footer {
-    background: #2c3e50;
-    color: white;
-    padding: 40px 0;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.footer-container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.footer-section h3 {
-    color: white;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.footer-section p {
-    color: #bdc3c7;
-    margin-bottom: 10px;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.footer-section a {
-    color: #bdc3c7;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-    color: white;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #34495e;
-    color: #bdc3c7;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #bdc3c7;
-}
-
-/* ===== АНИМАЦИИ ===== */
-@keyframes searchPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(0, 123, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-    }
-}
-
-@keyframes amountIncrease {
-    0% {
-        transform: scale(1);
-        color: #333;
-    }
-    50% {
-        transform: scale(1.1);
-        color: #27ae60;
-        font-weight: 700;
-    }
-    100% {
-        transform: scale(1);
-        color: #333;
-    }
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4);
-        background: whitesmoke;
-    }
-    50% {
-        box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2);
-        background: #f0fff4;
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
-        background: whitesmoke;
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.search-pulse {
-    animation: searchPulse 1s ease-out;
-}
-
-.amount-increasing {
-    animation: amountIncrease 2s ease-out;
-}
-
-.cart-pulse {
-    animation: pulse 2s ease-out;
-}
-
-/* ===== МЕДИА-ЗАПРОСЫ ===== */
-
-/* Десктопы меньше 1024px - сохраняем десктопный вид с горизонтальным скроллом */
-@media (max-width: 1024px) {
-    body {
-        min-width: 1140px;
-        overflow-x: auto;
-    }
-
-    .header-container,
-    .content-container,
-    .footer-container,
-    .hero-container {
-        min-width: 1140px;
-    }
-
-    .floating-icons {
-        transition: none !important;
-    }
-
-    .floating-icons-left,
-    .floating-icons-right {
-        transition: none !important;
-    }
-
-    .floating-icons-left {
-        left: calc((100vw - 1140px) / 2) !important;
-    }
-
-    .floating-icons-right {
-        right: calc((100vw - 1140px) / 2) !important;
-    }
-
-    .floating-icons.scrolled .floating-icons-left {
-        left: 20px !important;
-    }
-
-    .floating-icons.scrolled .floating-icons-right {
-        right: 20px !important;
-    }
-
-    .header.scrolled,
-    .floating-icons.scrolled {
-        box-shadow: none;
-        transform: none;
-    }
-
-    /* Корзина - позиционируем аналогично десктопной версии */
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2) !important;
-        width: 375px;
-    }
-
-    /* Сдвиг контента при открытой корзине */
-    .hero-container.shifted {
-        margin-left: calc((100vw - 1140px) / 2) !important;
-        max-width: calc(1140px - 400px) !important;
-        width: calc(1140px - 400px) !important;
-        transform: scale(0.85);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    }
-
-    .content-sections.shifted {
-        margin-left: calc((100vw - 1140px) / 2) !important;
-        max-width: calc(1140px - 400px) !important;
-        width: calc(1140px - 400px) !important;
-        transform: scale(0.85);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    }
-
-    .hero-container.shifted .hero h2 {
-        font-size: 3rem !important;
-        line-height: 1.1;
-    }
-
-    .hero-container.shifted .hero p {
-        font-size: 1.2rem !important;
-        margin-bottom: 25px;
-    }
-
-    .content-sections.shifted .menu-grid {
-        gap: 25px !important;
-        margin-top: 35px !important;
-    }
-
-    .content-sections.shifted .menu-item {
-        padding: 20px !important;
-    }
-
-    .content-sections.shifted .menu-item h3 {
-        font-size: 1.1rem !important;
-        margin-bottom: 8px !important;
-    }
-
-    .content-sections.shifted .price {
-        font-size: 1.1rem !important;
-        margin-top: 12px !important;
-    }
-
-    .footer-container {
-        min-width: 1140px;
-    }
-
-    /* Корректируем позиционирование плавающих иконок при открытой корзине */
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1140px) / 2) !important;
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1140px) / 2) !important;
-    }
-}
-
-/* Планшеты и маленькие экраны - также сохраняем десктопный вид */
-@media (max-width: 768px) {
-    body {
-        min-width: 1140px;
-        overflow-x: auto;
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2) !important;
-        width: 375px;
-    }
-
-    .hero-container.shifted {
-        transform: scale(0.85) !important;
-    }
-
-    .content-sections.shifted {
-        transform: scale(0.85) !important;
-    }
-}
-
-/* Мобильные устройства - также сохраняем десктопный вид */
-@media (max-width: 480px) {
-    body {
-        min-width: 1140px;
-        overflow-x: auto;
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2) !important;
-        width: 375px;
-    }
-
-    .hero-container.shifted {
-        transform: scale(0.85) !important;
-    }
-
-    .content-sections.shifted {
-        transform: scale(0.85) !important;
-    }
-}
-/* Большие экраны */
-@media (min-width: 1025px) {
-    body {
-        min-width: auto;
-        overflow-x: hidden;
-    }
-}
-
-/* Очень большие экраны */
-@media (min-width: 1441px) {
-    .header-container {
-        width: 1140px;
-        max-width: 1300px;
-    }
-
-    .content-container,
-    .footer-container {
-        max-width: 1300px;
-    }
-
-    .hero-container {
-        max-width: 1300px;
-    }
-
-    .content-sections {
-        max-width: 1300px;
-    }
-
-    .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
-    }
-
-    .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
-    }
-
-    .floating-icons.scrolled .floating-icons-left {
-        left: 20px;
-    }
-
-    .floating-icons.scrolled .floating-icons-right {
-        right: 20px;
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2 - 375px);
-    }
-
-    .hero-container.shifted {
-        margin-left: auto !important;
-        max-width: 1300px !important;
-        width: 1300px !important;
-        transform: scale(0.9) !important;
-        transition: none !important;
-    }
-
-    .content-sections.shifted {
-        margin-left: auto !important;
-        max-width: 1300px !important;
-        width: 1300px !important;
-        transform: scale(0.9) !important;
-        transition: none !important;
-    }
-
-    .hero-container.shifted .hero h2 {
-        font-size: 3rem !important;
-    }
-
-    .hero-container.shifted .hero p {
-        font-size: 1.2rem !important;
-    }
-
-    .content-sections.shifted .menu-grid {
-        gap: 30px !important;
-        margin-top: 40px !important;
-    }
-
-    .content-sections.shifted .menu-item {
-        padding: 25px !important;
-    }
-
-    .content-sections.shifted .menu-item h3 {
-        font-size: inherit !important;
-        margin-bottom: 10px !important;
-    }
-
-    .content-sections.shifted .price {
-        font-size: 1.3rem !important;
-        margin-top: 15px !important;
+class SushiApp {
+    constructor() {
+        this.cartResizeHandler = this.updateCartPanelPosition.bind(this);
+        this.init();
     }
+
+    init() {
+        try {
+            this.initHeaderBehavior();
+            this.initLanguageSelector();
+            this.initSearch();
+            this.initCart();
+            this.animateCartAmount();
+        } catch (error) {
+            console.error('SushiApp initialization failed:', error);
+        }
+    }
+
+    initHeaderBehavior() {
+        const header = document.querySelector('.header');
+        const floatingIcons = document.querySelector('.floating-icons');
+
+        if (!header || !floatingIcons) return;
+
+        const updateHeader = () => {
+            const scrollY = window.scrollY;
+
+            // Для всех экранов применяем одинаковую логику скролла
+            if (document.body.classList.contains('cart-open')) {
+                return;
+            }
+
+            header.classList.toggle('scrolled', scrollY > 200);
+            floatingIcons.classList.toggle('scrolled', scrollY > 200);
+        };
 
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
-    }
-}
-
-/* Очень большие экраны 2560px+ - отключение сдвига контента */
-@media (min-width: 2560px) {
-    .hero-container.shifted {
-        margin-left: auto !important;
-        max-width: 1300px !important;
-        width: 1300px !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
-    .content-sections.shifted {
-        margin-left: auto !important;
-        max-width: 1300px !important;
-        width: 1300px !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1300px) / 2 - 375px - 20px) !important;
-    }
-
-    /* Отключаем все трансформации для контента */
-    .hero-container.shifted .hero h2,
-    .hero-container.shifted .hero p,
-    .content-sections.shifted .menu-grid,
-    .content-sections.shifted .menu-item,
-    .content-sections.shifted .menu-item h3,
-    .content-sections.shifted .price {
-        transform: none !important;
-        font-size: inherit !important;
-        margin: inherit !important;
-        padding: inherit !important;
-        gap: inherit !important;
-    }
-
-    /* Корректируем позиционирование плавающих иконок */
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1300px) / 2) !important;
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1300px) / 2) !important;
-    }
-}
-
-
-
-/* Стили для экранов 1441px - 2559px при открытой корзине */
-@media (min-width: 1441px) and (max-width: 2559px) {
-    body.cart-open .hero-container.shifted,
-    body.cart-open .content-sections.shifted {
-        margin-left: calc((100vw - 1140px) / 2) !important;
-        margin-right: 0 !important;
-        max-width: calc(1140px - 400px) !important;
-        width: calc(1140px - 400px) !important;
-        transform: scale(1) !important;
-        transform-origin: left top;
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    }
-
-    body.cart-open .cart-panel.active {
-        right: calc((100vw - 1140px) / 2) !important;
-    }
-
-    /* Корректируем позиционирование плавающих иконок */
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1140px) / 2) !important;
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1140px) / 2) !important;
-    }
-}
-/* Экран 1440px - исправление отступов при открытой корзине */
-@media (min-width: 1025px) and (max-width: 1440px) {
-    .hero-container.shifted,
-    .content-sections.shifted {
-        margin-left: calc((100vw - 1140px) / 2);
-        max-width: calc(1140px - 400px);
-        width: calc(1140px - 400px);
-        transform: scale(0.85);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2);
-        width: 375px;
-    }
-
-    /* Корректируем позиционирование плавающих иконок при открытой корзине */
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1140px) / 2);
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1140px) / 2);
-    }
-}
-
-/* Для экранов 1441px - 2559px */
-@media (min-width: 1441px) and (max-width: 2559px) {
-    .hero-container.shifted,
-    .content-sections.shifted {
-        margin-left: calc((100vw - 1140px) / 2);
-        max-width: calc(1140px - 400px);
-        width: calc(1140px - 400px);
-        transform: scale(0.85);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2);
-        width: 375px;
-    }
-
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1140px) / 2);
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1140px) / 2);
-    }
-}
+        window.addEventListener('scroll', updateHeader);
+        window.addEventListener('resize', updateHeader);
+        updateHeader();
+    }
+    animateCartAmount() {
+        setTimeout(() => {
+            const cartAmount = document.getElementById('cartAmount');
+            const cart = document.querySelector('.cart');
+
+            if (!cartAmount || !cart) return;
+
+            cartAmount.classList.add('amount-increasing');
+            cart.classList.add('cart-pulse');
+
+            let currentAmount = 0;
+            const targetAmount = 14500;
+            const duration = 2000;
+            const startTime = performance.now();
+
+            const animate = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                currentAmount = targetAmount * progress;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    setTimeout(() => {
+                        cartAmount.classList.remove('amount-increasing');
+                        cart.classList.remove('cart-pulse');
+                    }, 1000);
+                }
+
+                cartAmount.textContent = Math.round(currentAmount).toLocaleString('ru-RU') + ' ₸';
+            };
+
+            requestAnimationFrame(animate);
+        }, 300);
+    }
+
+    initLanguageSelector() {
+        const languageButton = document.getElementById('languageButton');
+        const languageSelector = document.querySelector('.language-selector');
+        const languageOptions = document.querySelectorAll('.language-option');
+
+        if (!languageButton || !languageSelector || languageOptions.length === 0) return;
+
+        languageOptions[0].classList.add('active');
+
+        languageButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageSelector.classList.toggle('active');
+        });
+
+        languageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const langCodeElement = option.querySelector('.language-code');
+                const textElement = languageButton.querySelector('text');
+
+                if (langCodeElement && textElement) {
+                    const langCode = langCodeElement.textContent;
+                    textElement.textContent = langCode;
+
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    languageSelector.classList.remove('active');
+                }
+            });
+        });
+
+        document.addEventListener('click', () => {
+            languageSelector.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                languageSelector.classList.remove('active');
+            }
+        });
+    }
+
+    initSearch() {
+        const searchButton = document.getElementById('searchButton');
+        const searchExpanded = document.getElementById('searchExpanded');
+        const searchInput = document.getElementById('searchInput');
+        const searchClose = document.getElementById('searchClose');
+        const searchContainer = document.querySelector('.search-container');
+        const suggestionItems = document.querySelectorAll('.suggestion-item');
+
+        if (!searchButton || !searchExpanded || !searchInput || !searchClose || !searchContainer) return;
+
+        searchButton.addEventListener('click', () => {
+            searchExpanded.classList.add('active');
+            setTimeout(() => searchInput.focus(), 100);
+        });
+
+        searchClose.addEventListener('click', () => this.closeSearch());
+
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                this.closeSearch();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeSearch();
+            }
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchContainer.classList.toggle('search-pulse', e.target.value.length > 0);
+        });
+
+        suggestionItems.forEach(item => {
+            item.addEventListener('click', () => {
+                searchInput.value = item.textContent;
+                searchInput.focus();
+                this.performSearch(searchInput.value);
+            });
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                this.performSearch(searchInput.value);
+            }
+        });
+    }
+
+    closeSearch() {
+        const searchExpanded = document.getElementById('searchExpanded');
+        const searchInput = document.getElementById('searchInput');
+        const searchContainer = document.querySelector('.search-container');
+
+        if (searchExpanded) searchExpanded.classList.remove('active');
+        if (searchInput) searchInput.value = '';
+        if (searchContainer) searchContainer.classList.remove('search-pulse');
+    }
+
+    performSearch(query) {
+        if (query.trim()) {
+            console.log('Выполняется поиск:', query);
+            this.closeSearch();
+        }
+    }
+
+    initCart() {
+        const cartButton = document.querySelector('.cart-button');
+        const cartClose = document.getElementById('cartClose');
+        const cartPanel = document.getElementById('cartPanel');
+
+        if (!cartButton || !cartClose || !cartPanel) return;
+
+        cartButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.toggleCart();
+        });
+
+        cartClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.closeCart();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cartPanel.classList.contains('active')) {
+                this.closeCart();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (cartPanel.classList.contains('active') &&
+                !cartPanel.contains(e.target) &&
+                !e.target.closest('.cart-button')) {
+                this.closeCart();
+            }
+        });
+    }
+
+    toggleCart() {
+        const cartPanel = document.getElementById('cartPanel');
+        if (cartPanel && cartPanel.classList.contains('active')) {
+            this.closeCart();
+        } else {
+            this.openCart();
+        }
+    }
+
+    openCart() {
+        const cartPanel = document.getElementById('cartPanel');
+        const contentSections = document.querySelector('.content-sections');
+        const heroContainer = document.querySelector('.hero-container');
+        const body = document.body;
+        const header = document.querySelector('.header');
+        const floatingIcons = document.querySelector('.floating-icons');
+
+        if (!cartPanel || !contentSections || !heroContainer || !body || !header || !floatingIcons) return;
+
+        // Для очень больших экранов
+        if (window.innerWidth >= 2560) {
+            body.classList.add('cart-open');
+            cartPanel.classList.add('active');
+            this.updateCartPanelPosition();
+            window.addEventListener('resize', this.cartResizeHandler);
+            return;
+        }
+
+        contentSections.classList.add('shifted');
+        heroContainer.classList.add('shifted');
+        body.classList.add('cart-open');
+
+        // Для всех экранов 1025px и выше корректируем позиционирование
+        if (window.innerWidth >= 1025) {
+            const floatingIconsLeft = document.querySelector('.floating-icons-left');
+            const floatingIconsRight = document.querySelector('.floating-icons-right');
+
+            if (floatingIconsLeft) {
+                floatingIconsLeft.style.left = `calc((100vw - 1140px) / 2)`;
+            }
+            if (floatingIconsRight) {
+                floatingIconsRight.style.right = `calc((100vw - 1140px) / 2)`;
+            }
+        }
+
+        cartPanel.classList.add('active');
+        this.updateCartPanelPosition();
+        window.addEventListener('resize', this.cartResizeHandler);
+    }
+
+    closeCart() {
+        const cartPanel = document.getElementById('cartPanel');
+        const contentSections = document.querySelector('.content-sections');
+        const heroContainer = document.querySelector('.hero-container');
+        const body = document.body;
+
+        if (!cartPanel || !contentSections || !heroContainer || !body) return;
+
+        cartPanel.classList.remove('active');
+        contentSections.classList.remove('shifted');
+        heroContainer.classList.remove('shifted');
+        body.classList.remove('cart-open');
+
+        // Сбрасываем инлайн-стили на всех экранах
+        const floatingIconsLeft = document.querySelector('.floating-icons-left');
+        const floatingIconsRight = document.querySelector('.floating-icons-right');
+
+        if (floatingIconsLeft) floatingIconsLeft.style.left = '';
+        if (floatingIconsRight) floatingIconsRight.style.right = '';
+
+        this.updateHeaderState();
+
+        window.removeEventListener('resize', this.cartResizeHandler);
+        cartPanel.style.right = '';
+    }
+    updateCartPanelPosition() {
+        const cartPanel = document.getElementById('cartPanel');
+        if (!cartPanel) return;
+
+        // Для всех экранов используем десктопную логику позиционирования
+        if (window.innerWidth <= 2559) {
+            cartPanel.style.right = 'calc((100vw - 1140px) / 2)';
+            cartPanel.style.width = '375px';
+            return;
+        }
+
+        // Для очень больших экранов 2560px+
+        if (window.innerWidth >= 2560) {
+            cartPanel.style.right = 'calc((100vw - 1300px) / 2 - 375px - 20px)';
+            cartPanel.style.width = '375px';
+            return;
+        }
+
+        cartPanel.style.right = '';
+        cartPanel.style.width = '375px';
+    }
+    updateHeaderState() {
+        const header = document.querySelector('.header');
+        const floatingIcons = document.querySelector('.floating-icons');
+        const scrollY = window.scrollY;
+
+        if (!header || !floatingIcons || document.body.classList.contains('cart-open')) return;
+
+        // Для всех экранов применяем одинаковую логику
+        header.classList.toggle('scrolled', scrollY > 200);
+        floatingIcons.classList.toggle('scrolled', scrollY > 200);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new SushiApp();
+});
