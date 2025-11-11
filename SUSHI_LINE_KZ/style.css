@@ -506,11 +506,11 @@ p {
 
 .hero-container.shifted {
     margin-left: calc((100vw - 1140px) / 2);
-    max-width: calc(1140px - 400px);
-    width: calc(1140px - 400px);
+    max-width: calc(1140px - 450px);
+    width: calc(1140px - 450px);
     padding: 0;
     box-sizing: border-box;
-    transform: scale(0.85);
+    transform: scale(0.8);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -557,11 +557,11 @@ p {
 }
 
 .hero-container.shifted .hero h2 {
-    font-size: 3rem;
+    font-size: 2.8rem;
 }
 
 .hero-container.shifted .hero p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .order-button {
@@ -618,12 +618,12 @@ p {
 
 .content-sections.shifted {
     margin-left: calc((100vw - 1140px) / 2);
-    max-width: calc(1140px - 400px);
-    width: calc(1140px - 400px);
+    max-width: calc(1140px - 450px);
+    width: calc(1140px - 450px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     padding: 0;
     box-sizing: border-box;
-    transform: scale(0.85);
+    transform: scale(0.8);
 }
 
 .menu-grid {
@@ -635,8 +635,9 @@ p {
 }
 
 .content-sections.shifted .menu-grid {
-    gap: 25px;
-    margin-top: 35px;
+    gap: 20px;
+    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .menu-item {
@@ -653,7 +654,7 @@ p {
 }
 
 .content-sections.shifted .menu-item {
-    padding: 20px;
+    padding: 18px;
 }
 
 .menu-item h3 {
@@ -663,8 +664,8 @@ p {
 }
 
 .content-sections.shifted .menu-item h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 1rem;
+    margin-bottom: 6px;
 }
 
 .price {
@@ -677,8 +678,8 @@ p {
 }
 
 .content-sections.shifted .price {
-    font-size: 1.1rem;
-    margin-top: 12px;
+    font-size: 1rem;
+    margin-top: 10px;
 }
 
 /* ===== ФУТЕР ===== */
@@ -864,17 +865,17 @@ p {
 
     .hero-container.shifted {
         margin-left: 20px !important;
-        max-width: calc(1140px - 400px - 40px) !important;
-        width: calc(1140px - 400px - 40px) !important;
-        transform: scale(0.6);
+        max-width: calc(1140px - 450px - 40px) !important;
+        width: calc(1140px - 450px - 40px) !important;
+        transform: scale(0.55);
         transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     }
 
     .content-sections.shifted {
         margin-left: 20px !important;
-        max-width: calc(1140px - 400px - 40px) !important;
-        width: calc(1140px - 400px - 40px) !important;
-        transform: scale(0.6);
+        max-width: calc(1140px - 450px - 40px) !important;
+        width: calc(1140px - 450px - 40px) !important;
+        transform: scale(0.55);
         transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     }
 
@@ -884,32 +885,32 @@ p {
     }
 
     .hero-container.shifted .hero h2 {
-        font-size: 2.5rem !important;
+        font-size: 2.2rem !important;
         line-height: 1.1;
     }
 
     .hero-container.shifted .hero p {
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
         margin-bottom: 25px;
     }
 
     .content-sections.shifted .menu-grid {
-        gap: 15px !important;
-        margin-top: 25px !important;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 12px !important;
+        margin-top: 20px !important;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
     }
 
     .content-sections.shifted .menu-item {
-        padding: 15px !important;
+        padding: 12px !important;
     }
 
     .content-sections.shifted .menu-item h3 {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
         margin-bottom: 8px !important;
     }
 
     .content-sections.shifted .price {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
         margin-top: 10px !important;
     }
 
@@ -925,15 +926,15 @@ p {
     }
 
     .hero-container.shifted {
-        transform: scale(0.65) !important;
-        max-width: calc(1140px - 400px - 80px) !important;
-        width: calc(1140px - 400px - 80px) !important;
+        transform: scale(0.5) !important;
+        max-width: calc(1140px - 450px - 80px) !important;
+        width: calc(1140px - 450px - 80px) !important;
     }
 
     .content-sections.shifted {
-        transform: scale(0.65) !important;
-        max-width: calc(1140px - 400px - 80px) !important;
-        width: calc(1140px - 400px - 80px) !important;
+        transform: scale(0.5) !important;
+        max-width: calc(1140px - 450px - 80px) !important;
+        width: calc(1140px - 450px - 80px) !important;
     }
 
     .cart-panel.active {
@@ -942,11 +943,11 @@ p {
     }
 
     .hero-container.shifted .hero h2 {
-        font-size: 2rem !important;
+        font-size: 1.8rem !important;
     }
 
     .hero-container.shifted .hero p {
-        font-size: 0.9rem !important;
+        font-size: 0.85rem !important;
     }
 
     .order-button {
@@ -963,11 +964,11 @@ p {
     }
 
     .hero-container.shifted {
-        transform: scale(0.6) !important;
+        transform: scale(0.45) !important;
     }
 
     .content-sections.shifted {
-        transform: scale(0.6) !important;
+        transform: scale(0.45) !important;
     }
 }
 
@@ -1023,7 +1024,7 @@ p {
         margin-left: auto !important;
         max-width: 1300px !important;
         width: 1300px !important;
-        transform: scale(0.9) !important;
+        transform: scale(0.85) !important;
         transition: none !important;
     }
 
@@ -1031,34 +1032,34 @@ p {
         margin-left: auto !important;
         max-width: 1300px !important;
         width: 1300px !important;
-        transform: scale(0.9) !important;
+        transform: scale(0.85) !important;
         transition: none !important;
     }
 
     .hero-container.shifted .hero h2 {
-        font-size: 3rem !important;
+        font-size: 2.6rem !important;
     }
 
     .hero-container.shifted .hero p {
-        font-size: 1.2rem !important;
+        font-size: 1.1rem !important;
     }
 
     .content-sections.shifted .menu-grid {
-        gap: 30px !important;
-        margin-top: 40px !important;
+        gap: 25px !important;
+        margin-top: 35px !important;
     }
 
     .content-sections.shifted .menu-item {
-        padding: 25px !important;
+        padding: 22px !important;
     }
 
     .content-sections.shifted .menu-item h3 {
-        font-size: inherit !important;
+        font-size: 1.05rem !important;
         margin-bottom: 10px !important;
     }
 
     .content-sections.shifted .price {
-        font-size: 1.3rem !important;
+        font-size: 1.15rem !important;
         margin-top: 15px !important;
     }
 
@@ -1117,17 +1118,15 @@ p {
     }
 }
 
-
-
 /* Стили для экранов 1441px - 2559px при открытой корзине */
 @media (min-width: 1441px) and (max-width: 2559px) {
     body.cart-open .hero-container.shifted,
     body.cart-open .content-sections.shifted {
         margin-left: calc((100vw - 1140px) / 2) !important;
         margin-right: 0 !important;
-        max-width: calc(1140px - 400px) !important;
-        width: calc(1140px - 400px) !important;
-        transform: scale(1) !important;
+        max-width: calc(1140px - 450px) !important;
+        width: calc(1140px - 450px) !important;
+        transform: scale(0.8) !important;
         transform-origin: left top;
         transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     }
@@ -1145,14 +1144,15 @@ p {
         right: calc((100vw - 1140px) / 2) !important;
     }
 }
+
 /* Экран 1440px - исправление отступов при открытой корзине */
 @media (min-width: 1025px) and (max-width: 1440px) {
     .hero-container.shifted,
     .content-sections.shifted {
         margin-left: calc((100vw - 1140px) / 2);
-        max-width: calc(1140px - 400px);
-        width: calc(1140px - 400px);
-        transform: scale(0.85);
+        max-width: calc(1140px - 450px);
+        width: calc(1140px - 450px);
+        transform: scale(0.8);
         transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
@@ -1176,9 +1176,9 @@ p {
     .hero-container.shifted,
     .content-sections.shifted {
         margin-left: calc((100vw - 1140px) / 2);
-        max-width: calc(1140px - 400px);
-        width: calc(1140px - 400px);
-        transform: scale(0.85);
+        max-width: calc(1140px - 450px);
+        width: calc(1140px - 450px);
+        transform: scale(0.8);
         transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
