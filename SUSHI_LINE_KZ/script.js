@@ -25,7 +25,7 @@ class SushiApp {
         const updateHeader = () => {
             const scrollY = window.scrollY;
 
-           
+            // Для всех экранов применяем одинаковую логику скролла
             if (document.body.classList.contains('cart-open')) {
                 return;
             }
@@ -328,7 +328,7 @@ class SushiApp {
 
         if (!header || !floatingIcons || document.body.classList.contains('cart-open')) return;
 
-
+        // Для всех экранов применяем одинаковую логику
         header.classList.toggle('scrolled', scrollY > 200);
         floatingIcons.classList.toggle('scrolled', scrollY > 200);
     }
