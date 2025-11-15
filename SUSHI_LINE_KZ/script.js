@@ -25,7 +25,7 @@ class SushiApp {
         const updateHeader = () => {
             const scrollY = window.scrollY;
 
-            // Для всех экранов применяем одинаковую логику скролла
+           
             if (document.body.classList.contains('cart-open')) {
                 return;
             }
@@ -38,6 +38,7 @@ class SushiApp {
         window.addEventListener('resize', updateHeader);
         updateHeader();
     }
+
     animateCartAmount() {
         setTimeout(() => {
             const cartAmount = document.getElementById('cartAmount');
@@ -233,7 +234,7 @@ class SushiApp {
 
         if (!cartPanel || !contentSections || !heroContainer || !body || !header || !floatingIcons) return;
 
-        // Для очень больших экранов
+        // Для очень больших экранов 2560px+
         if (window.innerWidth >= 2560) {
             body.classList.add('cart-open');
             cartPanel.classList.add('active');
@@ -246,16 +247,27 @@ class SushiApp {
         heroContainer.classList.add('shifted');
         body.classList.add('cart-open');
 
-        // Для всех экранов 1025px и выше корректируем позиционирование
-        if (window.innerWidth >= 1025) {
-            const floatingIconsLeft = document.querySelector('.floating-icons-left');
-            const floatingIconsRight = document.querySelector('.floating-icons-right');
+        // Обновляем позиционирование иконок для всех экранов
+        const floatingIconsLeft = document.querySelector('.floating-icons-left');
+        const floatingIconsRight = document.querySelector('.floating-icons-right');
 
-            if (floatingIconsLeft) {
-                floatingIconsLeft.style.left = `calc((100vw - 1140px) / 2)`;
-            }
-            if (floatingIconsRight) {
-                floatingIconsRight.style.right = `calc((100vw - 1140px) / 2)`;
+        if (window.innerWidth >= 1025) {
+            if (window.innerWidth <= 1440) {
+                // Для 1025px - 1440px
+                if (floatingIconsLeft) {
+                    floatingIconsLeft.style.left = `calc((100vw - 1140px) / 2)`;
+                }
+                if (floatingIconsRight) {
+                    floatingIconsRight.style.right = `calc((100vw - 1140px) / 2)`;
+                }
+            } else if (window.innerWidth <= 2559) {
+                // Для 1441px - 2559px
+                if (floatingIconsLeft) {
+                    floatingIconsLeft.style.left = `calc((100vw - 1300px) / 2)`;
+                }
+                if (floatingIconsRight) {
+                    floatingIconsRight.style.right = `calc((100vw - 1300px) / 2)`;
+                }
             }
         }
 
@@ -289,27 +301,26 @@ class SushiApp {
         window.removeEventListener('resize', this.cartResizeHandler);
         cartPanel.style.right = '';
     }
+
     updateCartPanelPosition() {
         const cartPanel = document.getElementById('cartPanel');
         if (!cartPanel) return;
 
-        // Для всех экранов используем десктопную логику позиционирования
-        if (window.innerWidth <= 2559) {
+        if (window.innerWidth <= 1440) {
+            // Для экранов до 1440px
             cartPanel.style.right = 'calc((100vw - 1140px) / 2)';
             cartPanel.style.width = '375px';
-            return;
-        }
-
-        // Для очень больших экранов 2560px+
-        if (window.innerWidth >= 2560) {
+        } else if (window.innerWidth <= 2559) {
+            // Для экранов 1441px - 2559px
+            cartPanel.style.right = 'calc((100vw - 1300px) / 2)';
+            cartPanel.style.width = '375px';
+        } else if (window.innerWidth >= 2560) {
+            // Для очень больших экранов 2560px+
             cartPanel.style.right = 'calc((100vw - 1300px) / 2 - 375px - 20px)';
             cartPanel.style.width = '375px';
-            return;
         }
-
-        cartPanel.style.right = '';
-        cartPanel.style.width = '375px';
     }
+
     updateHeaderState() {
         const header = document.querySelector('.header');
         const floatingIcons = document.querySelector('.floating-icons');
@@ -317,7 +328,7 @@ class SushiApp {
 
         if (!header || !floatingIcons || document.body.classList.contains('cart-open')) return;
 
-        // Для всех экранов применяем одинаковую логику
+
         header.classList.toggle('scrolled', scrollY > 200);
         floatingIcons.classList.toggle('scrolled', scrollY > 200);
     }
