@@ -25,7 +25,7 @@ class SushiApp {
         const updateHeader = () => {
             const scrollY = window.scrollY;
 
-            // Для всех экранов применяем одинаковую логику скролла
+            
             if (document.body.classList.contains('cart-open')) {
                 return;
             }
@@ -247,7 +247,7 @@ class SushiApp {
         heroContainer.classList.add('shifted');
         body.classList.add('cart-open');
 
-        // Обновляем позиционирование иконок для всех экранов
+        
         const floatingIconsLeft = document.querySelector('.floating-icons-left');
         const floatingIconsRight = document.querySelector('.floating-icons-right');
 
@@ -289,7 +289,7 @@ class SushiApp {
         heroContainer.classList.remove('shifted');
         body.classList.remove('cart-open');
 
-        // Сбрасываем инлайн-стили на всех экранах
+       
         const floatingIconsLeft = document.querySelector('.floating-icons-left');
         const floatingIconsRight = document.querySelector('.floating-icons-right');
 
