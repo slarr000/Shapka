@@ -411,10 +411,6 @@ p {
     overflow: hidden;
 }
 
-.cart-panel.active {
-    right: max(20px, calc((100vw - 1140px) / 2 - 375px));
-}
-
 .cart-content {
     flex: 1;
     padding: 20px;
@@ -503,16 +499,14 @@ p {
     justify-content: center;
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-sizing: border-box;
-    transform-origin: left center;
+    transform-origin: left top;
     width: 100%;
 }
 
 .hero-container.shifted {
     margin-left: max(20px, calc((100vw - 1140px) / 2));
     max-width: calc(1140px - 450px);
-    width: calc(100% - 450px - 40px);
-    padding: 0 20px;
-    box-sizing: border-box;
+    width: calc(1140px - 450px);
     transform: scale(0.8);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -616,14 +610,14 @@ p {
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
-    transform-origin: left center;
+    transform-origin: left top;
     width: 100%;
 }
 
 .content-sections.shifted {
     margin-left: max(20px, calc((100vw - 1140px) / 2));
     max-width: calc(1140px - 450px);
-    width: calc(100% - 450px - 40px);
+    width: calc(1140px - 450px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     padding: 0 20px;
     box-sizing: border-box;
@@ -950,8 +944,8 @@ p {
     }
 }
 
-/* Очень большие экраны */
-@media (min-width: 1441px) {
+/* Очень большие экраны 1441px - 2559px */
+@media (min-width: 1441px) and (max-width: 2559px) {
     .header-container {
         max-width: 1300px;
     }
@@ -986,7 +980,8 @@ p {
     }
 
     .cart-panel.active {
-        right: calc((100vw - 1300px) / 2 - 375px);
+        right: calc((100vw - 1300px) / 2);
+        width: 375px;
     }
 
     .hero-container.shifted {
@@ -1003,33 +998,6 @@ p {
         transform: scale(0.85);
     }
 
-    .hero-container.shifted .hero h2 {
-        font-size: 2.6rem;
-    }
-
-    .hero-container.shifted .hero p {
-        font-size: 1.1rem;
-    }
-
-    .content-sections.shifted .menu-grid {
-        gap: 25px;
-        margin-top: 35px;
-    }
-
-    .content-sections.shifted .menu-item {
-        padding: 22px;
-    }
-
-    .content-sections.shifted .menu-item h3 {
-        font-size: 1.05rem;
-        margin-bottom: 10px;
-    }
-
-    .content-sections.shifted .price {
-        font-size: 1.15rem;
-        margin-top: 15px;
-    }
-
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1300px) / 2);
     }
@@ -1041,6 +1009,31 @@ p {
 
 /* Очень большие экраны 2560px+ - отключение сдвига контента */
 @media (min-width: 2560px) {
+    .header-container {
+        max-width: 1300px;
+    }
+
+    .content-container,
+    .footer-container {
+        max-width: 1300px;
+    }
+
+    .hero-container {
+        max-width: 1300px;
+    }
+
+    .content-sections {
+        max-width: 1300px;
+    }
+
+    .floating-icons-left {
+        left: calc((100vw - 1300px) / 2);
+    }
+
+    .floating-icons-right {
+        right: calc((100vw - 1300px) / 2);
+    }
+
     .hero-container.shifted {
         margin-left: auto;
         max-width: 1300px;
@@ -1057,22 +1050,8 @@ p {
 
     .cart-panel.active {
         right: calc((100vw - 1300px) / 2 - 375px - 20px);
+        width: 375px;
     }
-
-
-    .hero-container.shifted .hero h2,
-    .hero-container.shifted .hero p,
-    .content-sections.shifted .menu-grid,
-    .content-sections.shifted .menu-item,
-    .content-sections.shifted .menu-item h3,
-    .content-sections.shifted .price {
-        transform: none;
-        font-size: inherit;
-        margin: inherit;
-        padding: inherit;
-        gap: inherit;
-    }
-
 
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1300px) / 2);
@@ -1083,37 +1062,11 @@ p {
     }
 }
 
-/* Стили для экранов 1441px - 2559px при открытой корзине */
-@media (min-width: 1441px) and (max-width: 2559px) {
-    body.cart-open .hero-container.shifted,
-    body.cart-open .content-sections.shifted {
-        margin-left: calc((100vw - 1300px) / 2);
-        margin-right: 0;
-        max-width: calc(1300px - 450px);
-        width: calc(1300px - 450px);
-        transform: scale(0.85);
-        transform-origin: left top;
-    }
-
-    body.cart-open .cart-panel.active {
-        right: calc((100vw - 1300px) / 2);
-    }
-
-
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
-    }
-}
-
-
+/* Для экранов 1025px - 1440px при открытой корзине */
 @media (min-width: 1025px) and (max-width: 1440px) {
     .hero-container.shifted,
     .content-sections.shifted {
-        margin-left: calc((100vw - 1140px) / 2);
+        margin-left: max(20px, calc((100vw - 1140px) / 2));
         max-width: calc(1140px - 450px);
         width: calc(1140px - 450px);
         transform: scale(0.8);
@@ -1124,63 +1077,11 @@ p {
         width: 375px;
     }
 
-
     body.cart-open .floating-icons-left {
         left: calc((100vw - 1140px) / 2);
     }
 
     body.cart-open .floating-icons-right {
         right: calc((100vw - 1140px) / 2);
-    }
-}
-
-/* Для экранов 1441px - 2559px */
-@media (min-width: 1441px) and (max-width: 2559px) {
-    .hero-container.shifted,
-    .content-sections.shifted {
-        margin-left: calc((100vw - 1300px) / 2);
-        max-width: calc(1300px - 450px);
-        width: calc(1300px - 450px);
-        transform: scale(0.85);
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1300px) / 2);
-        width: 375px;
-    }
-
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
-    }
-
-    .hero-container.shifted .hero h2 {
-        font-size: 2.8rem;
-    }
-
-    .hero-container.shifted .hero p {
-        font-size: 1.1rem;
-    }
-
-    .content-sections.shifted .menu-grid {
-        gap: 25px;
-        margin-top: 35px;
-    }
-
-    .content-sections.shifted .menu-item {
-        padding: 22px;
-    }
-
-    .content-sections.shifted .menu-item h3 {
-        font-size: 1.05rem;
-        margin-bottom: 10px;
-    }
-
-    .content-sections.shifted .price {
-        font-size: 1.15rem;
-        margin-top: 15px;
     }
 }
