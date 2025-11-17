@@ -1,3 +1,18 @@
+/* ===== CSS ПЕРЕМЕННЫЕ ===== */
+:root {
+    --primary-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --transition-base: all 0.3s ease;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius: 12px;
+    --container-max-width: 1140px;
+    --container-large-width: 1300px;
+    --cart-width: 375px;
+    --header-height: 85px;
+    --color-primary: #333;
+    --color-secondary: #666;
+    --color-accent: #ff6b6b;
+}
+
 /* ===== БАЗОВЫЕ СТИЛИ ===== */
 * {
     margin: 0;
@@ -13,13 +28,13 @@ body {
 
 /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
 .content {
-    margin-top: 85px;
+    margin-top: var(--header-height);
     min-height: calc(100vh - 200px);
 }
 
 .content-container,
 .footer-container {
-    max-width: 1140px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
@@ -31,12 +46,12 @@ section {
 }
 
 h1, h2, h3 {
-    color: #333;
+    color: var(--color-primary);
     margin-bottom: 20px;
 }
 
 p {
-    color: #666;
+    color: var(--color-secondary);
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -49,8 +64,8 @@ p {
     width: 100%;
     background: rgb(255, 255, 255);
     z-index: 1001;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 85px;
+    transition: var(--transition-smooth);
+    height: var(--header-height);
 }
 
 .header.scrolled {
@@ -58,7 +73,7 @@ p {
 }
 
 .header-wrapper {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-smooth);
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -67,14 +82,14 @@ p {
 .header-container {
     display: flex;
     background: #ffffff;
-    height: 85px;
+    height: var(--header-height);
     margin: 0 auto;
     align-items: center;
     justify-content: center;
     padding: 15px 20px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-smooth);
     position: relative;
-    max-width: 1140px;
+    max-width: var(--container-max-width);
     width: 100%;
 }
 
@@ -90,7 +105,7 @@ p {
     align-items: center;
     padding: 0;
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-smooth);
 }
 
 .floating-icons-left,
@@ -99,16 +114,16 @@ p {
     align-items: center;
     gap: 15px;
     pointer-events: auto;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-smooth);
     position: relative;
 }
 
 .floating-icons-left {
-    left: max(20px, calc((100vw - 1140px) / 2));
+    left: max(20px, calc((100vw - var(--container-max-width)) / 2));
 }
 
 .floating-icons-right {
-    right: max(20px, calc((100vw - 1140px) / 2));
+    right: max(20px, calc((100vw - var(--container-max-width)) / 2));
 }
 
 .floating-icons.scrolled .floating-icons-left {
@@ -127,8 +142,9 @@ p {
     width: 40px;
     height: 40px;
     border-radius: 20%;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     flex-shrink: 0;
+    will-change: transform;
 }
 
 .menu-button, .language-button, .search-button {
@@ -142,7 +158,7 @@ p {
     background: transparent;
     border-radius: 20%;
     padding: 0;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .menu-button:hover,
@@ -158,7 +174,9 @@ p {
     background: rgb(255, 255, 255);
     backdrop-filter: blur(10px);
     border: 1px solid rgb(255, 255, 255);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--primary-shadow);
+    transition: var(--transition-base);
+    will-change: transform;
 }
 
 .floating-icons .menu:hover,
@@ -192,14 +210,14 @@ p {
     left: 0;
     margin-top: 8px;
     background: white;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     min-width: 180px;
     padding: 8px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     z-index: 1000;
 }
 
@@ -215,7 +233,7 @@ p {
     padding: 10px 12px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     gap: 12px;
     position: relative;
 }
@@ -237,7 +255,7 @@ p {
 .language-text {
     flex: 1;
     font-size: 14px;
-    color: #333;
+    color: var(--color-primary);
     font-weight: 500;
 }
 
@@ -280,7 +298,7 @@ p {
     background: #f8f9fa;
     border-radius: 20px;
     border: 2px solid transparent;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .search-input-container:focus-within {
@@ -299,7 +317,7 @@ p {
     background: transparent;
     outline: none;
     font-size: 14px;
-    color: #333;
+    color: var(--color-primary);
     font-family: inherit;
 }
 
@@ -316,7 +334,7 @@ p {
     cursor: pointer;
     padding: 4px;
     border-radius: 50%;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     opacity: 0.7;
 }
 
@@ -341,9 +359,9 @@ p {
     padding: 10px 16px;
     cursor: pointer;
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: var(--transition-base);
     font-size: 14px;
-    color: #333;
+    color: var(--color-primary);
 }
 
 .suggestion-item:hover {
@@ -358,10 +376,11 @@ p {
     align-items: center;
     min-width: 120px;
     height: 50px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     padding: 0 15px;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     z-index: 999;
+    will-change: transform;
 }
 
 .cart-button {
@@ -373,13 +392,13 @@ p {
     width: 100%;
     height: 100%;
     background: transparent;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     padding: 0;
     gap: 8px;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
-    transition: all 0.3s ease;
+    color: var(--color-primary);
+    transition: var(--transition-base);
 }
 
 .cart-button:hover {
@@ -389,25 +408,25 @@ p {
 .cart-amount {
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--color-primary);
     transition: all 0.8s ease;
     white-space: nowrap;
 }
 
 .cart-panel {
     position: fixed;
-    top: 85px;
+    top: var(--header-height);
     right: -450px;
-    width: 375px;
+    width: var(--cart-width);
     height: calc(100vh - 165px);
     max-height: calc(100vh - 165px);
     background: white;
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
     z-index: 1003;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-smooth);
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 
@@ -450,7 +469,7 @@ p {
 .cart-title {
     font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: var(--color-primary);
     margin: 0;
 }
 
@@ -460,13 +479,13 @@ p {
     cursor: pointer;
     padding: 8px;
     border-radius: 8px;
-    color: #666;
-    transition: all 0.2s ease;
+    color: var(--color-secondary);
+    transition: var(--transition-base);
 }
 
 .cart-close:hover {
     background: #f5f5f5;
-    color: #333;
+    color: var(--color-primary);
 }
 
 /* ===== ГЕРОЙ-СЕКЦИЯ ===== */
@@ -490,7 +509,7 @@ p {
 .hero-container {
     position: relative;
     z-index: 2;
-    max-width: 1140px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 20px;
     height: 100%;
@@ -503,9 +522,9 @@ p {
 }
 
 .hero-container.shifted {
-    margin-left: max(20px, calc((100vw - 1140px) / 2));
-    max-width: calc(1140px - 450px);
-    width: calc(1140px - 450px);
+    margin-left: max(20px, calc((100vw - var(--container-max-width)) / 2));
+    max-width: calc(var(--container-max-width) - 450px);
+    width: calc(var(--container-max-width) - 450px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -550,7 +569,7 @@ p {
 }
 
 .order-button {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, #ee5a52 100%);
     color: white;
     border: none;
     padding: 16px 35px;
@@ -563,6 +582,7 @@ p {
     position: relative;
     overflow: hidden;
     margin-top: 10px;
+    will-change: transform;
 }
 
 .order-button::before {
@@ -593,7 +613,7 @@ p {
 /* ===== СЕКЦИИ КОНТЕНТА ===== */
 .content-sections {
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    max-width: 1140px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
@@ -601,9 +621,9 @@ p {
 }
 
 .content-sections.shifted {
-    margin-left: max(20px, calc((100vw - 1140px) / 2));
-    max-width: calc(1140px - 450px);
-    width: calc(1140px - 450px);
+    margin-left: max(20px, calc((100vw - var(--container-max-width)) / 2));
+    max-width: calc(var(--container-max-width) - 450px);
+    width: calc(var(--container-max-width) - 450px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     padding: 0 20px;
     box-sizing: border-box;
@@ -620,9 +640,10 @@ p {
 .menu-item {
     background: #f8f9fa;
     padding: 25px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     text-align: center;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
 
 .menu-item:hover {
@@ -631,14 +652,14 @@ p {
 }
 
 .menu-item h3 {
-    color: #333;
+    color: var(--color-primary);
     margin-bottom: 10px;
 }
 
 .price {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #ff6b6b;
+    color: var(--color-accent);
     display: block;
     margin-top: 15px;
 }
@@ -652,7 +673,7 @@ p {
 }
 
 .footer-container {
-    max-width: 1140px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
@@ -678,7 +699,7 @@ p {
 .footer-section a {
     color: #bdc3c7;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .footer-section a:hover {
@@ -708,61 +729,65 @@ p {
 
 /* ===== АНИМАЦИИ ===== */
 @keyframes searchPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(0, 123, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
 }
 
 @keyframes amountIncrease {
-    0% {
-        transform: scale(1);
-        color: #333;
-    }
-    50% {
-        transform: scale(1.1);
-        color: #27ae60;
-        font-weight: 700;
-    }
-    100% {
-        transform: scale(1);
-        color: #333;
-    }
+    0% { transform: scale(1); color: var(--color-primary); }
+    50% { transform: scale(1.1); color: #27ae60; font-weight: 700; }
+    100% { transform: scale(1); color: var(--color-primary); }
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4);
-        background: whitesmoke;
-    }
-    50% {
-        box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2);
-        background: #f0fff4;
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
-        background: whitesmoke;
-    }
+    0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); background: whitesmoke; }
+    50% { box-shadow: 0 0 0 8px rgba(39, 174, 96, 0.2); background: #f0fff4; }
+    100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); background: whitesmoke; }
 }
 
-.search-pulse {
-    animation: searchPulse 1s ease-out;
-}
-
-.amount-increasing {
-    animation: amountIncrease 2s ease-out;
-}
-
-.cart-pulse {
-    animation: pulse 2s ease-out;
-}
+.search-pulse { animation: searchPulse 1s ease-out; }
+.amount-increasing { animation: amountIncrease 2s ease-out; }
+.cart-pulse { animation: pulse 2s ease-out; }
 
 /* ===== МЕДИА-ЗАПРОСЫ ===== */
+
+/* Мобильные устройства */
+@media (max-width: 480px) {
+    .cart-panel.active {
+        width: 300px;
+        right: 10px;
+    }
+
+    .hero-container.shifted,
+    .content-sections.shifted {
+        max-width: calc(100% - 320px);
+        width: calc(100% - 320px);
+    }
+}
+
+/* Планшеты и маленькие экраны */
+@media (max-width: 768px) {
+    .hero-container.shifted {
+        max-width: calc(100% - 370px);
+        width: calc(100% - 370px);
+    }
+
+    .content-sections.shifted {
+        max-width: calc(100% - 370px);
+        width: calc(100% - 370px);
+    }
+
+    .cart-panel.active {
+        width: 320px;
+        right: 15px;
+    }
+
+    .order-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
 
 /* Десктопы меньше 1024px */
 @media (max-width: 1024px) {
@@ -805,43 +830,6 @@ p {
     }
 }
 
-/* Планшеты и маленькие экраны */
-@media (max-width: 768px) {
-    .hero-container.shifted {
-        max-width: calc(100% - 370px);
-        width: calc(100% - 370px);
-    }
-
-    .content-sections.shifted {
-        max-width: calc(100% - 370px);
-        width: calc(100% - 370px);
-    }
-
-    .cart-panel.active {
-        width: 320px;
-        right: 15px;
-    }
-
-    .order-button {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-}
-
-/* Мобильные устройства */
-@media (max-width: 480px) {
-    .cart-panel.active {
-        width: 300px;
-        right: 10px;
-    }
-
-    .hero-container.shifted,
-    .content-sections.shifted {
-        max-width: calc(100% - 320px);
-        width: calc(100% - 320px);
-    }
-}
-
 /* Большие экраны */
 @media (min-width: 1025px) {
     body {
@@ -850,31 +838,54 @@ p {
     }
 }
 
+/* Для экранов 1025px - 1440px при открытой корзине */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .hero-container.shifted,
+    .content-sections.shifted {
+        margin-left: max(20px, calc((100vw - var(--container-max-width)) / 2));
+        max-width: calc(var(--container-max-width) - 450px);
+        width: calc(var(--container-max-width) - 450px);
+    }
+
+    .cart-panel.active {
+        right: calc((100vw - var(--container-max-width)) / 2);
+        width: var(--cart-width);
+    }
+
+    body.cart-open .floating-icons-left {
+        left: calc((100vw - var(--container-max-width)) / 2);
+    }
+
+    body.cart-open .floating-icons-right {
+        right: calc((100vw - var(--container-max-width)) / 2);
+    }
+}
+
 /* Очень большие экраны 1441px - 2559px */
 @media (min-width: 1441px) and (max-width: 2559px) {
     .header-container {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .content-container,
     .footer-container {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .hero-container {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .content-sections {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
+        left: calc((100vw - var(--container-large-width)) / 2);
     }
 
     .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
+        right: calc((100vw - var(--container-large-width)) / 2);
     }
 
     .floating-icons.scrolled .floating-icons-left {
@@ -886,103 +897,80 @@ p {
     }
 
     .cart-panel.active {
-        right: calc((100vw - 1300px) / 2);
-        width: 375px;
+        right: calc((100vw - var(--container-large-width)) / 2);
+        width: var(--cart-width);
     }
 
     .hero-container.shifted {
-        margin-left: calc((100vw - 1300px) / 2);
-        max-width: calc(1300px - 450px);
-        width: calc(1300px - 450px);
+        margin-left: calc((100vw - var(--container-large-width)) / 2);
+        max-width: calc(var(--container-large-width) - 450px);
+        width: calc(var(--container-large-width) - 450px);
     }
 
     .content-sections.shifted {
-        margin-left: calc((100vw - 1300px) / 2);
-        max-width: calc(1300px - 450px);
-        width: calc(1300px - 450px);
+        margin-left: calc((100vw - var(--container-large-width)) / 2);
+        max-width: calc(var(--container-large-width) - 450px);
+        width: calc(var(--container-large-width) - 450px);
     }
 
     body.cart-open .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
+        left: calc((100vw - var(--container-large-width)) / 2);
     }
 
     body.cart-open .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
+        right: calc((100vw - var(--container-large-width)) / 2);
     }
 }
 
 /* Очень большие экраны 2560px+ */
 @media (min-width: 2560px) {
     .header-container {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .content-container,
     .footer-container {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .hero-container {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .content-sections {
-        max-width: 1300px;
+        max-width: var(--container-large-width);
     }
 
     .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
+        left: calc((100vw - var(--container-large-width)) / 2);
     }
 
     .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
+        right: calc((100vw - var(--container-large-width)) / 2);
     }
 
     .hero-container.shifted {
         margin-left: auto;
-        max-width: 1300px;
-        width: 1300px;
+        max-width: var(--container-large-width);
+        width: var(--container-large-width);
     }
 
     .content-sections.shifted {
         margin-left: auto;
-        max-width: 1300px;
-        width: 1300px;
+        max-width: var(--container-large-width);
+        width: var(--container-large-width);
     }
 
     .cart-panel.active {
-        right: calc((100vw - 1300px) / 2 - 375px - 20px);
-        width: 375px;
+        right: calc((100vw - var(--container-large-width)) / 2 - var(--cart-width) - 20px);
+        width: var(--cart-width);
     }
 
     body.cart-open .floating-icons-left {
-        left: calc((100vw - 1300px) / 2);
+        left: calc((100vw - var(--container-large-width)) / 2);
     }
 
     body.cart-open .floating-icons-right {
-        right: calc((100vw - 1300px) / 2);
-    }
-}
-
-/* Для экранов 1025px - 1440px при открытой корзине */
-@media (min-width: 1025px) and (max-width: 1440px) {
-    .hero-container.shifted,
-    .content-sections.shifted {
-        margin-left: max(20px, calc((100vw - 1140px) / 2));
-        max-width: calc(1140px - 450px);
-        width: calc(1140px - 450px);
-    }
-
-    .cart-panel.active {
-        right: calc((100vw - 1140px) / 2);
-        width: 375px;
-    }
-
-    body.cart-open .floating-icons-left {
-        left: calc((100vw - 1140px) / 2);
-    }
-
-    body.cart-open .floating-icons-right {
-        right: calc((100vw - 1140px) / 2);
+        right: calc((100vw - var(--container-large-width)) / 2);
     }
 }
